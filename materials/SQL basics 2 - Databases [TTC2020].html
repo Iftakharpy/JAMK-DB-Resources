@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/ -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Antti Häkkinen">
+  <link rel="shortcut icon" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/img/favicon.ico">
+  <title>SQL basics 2 - Databases [TTC2020]</title>
+  <link href="./SQL basics 2 - Databases [TTC2020]_files/css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="./SQL basics 2 - Databases [TTC2020]_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./SQL basics 2 - Databases [TTC2020]_files/theme_extra.css" type="text/css">
+  <link rel="stylesheet" href="./SQL basics 2 - Databases [TTC2020]_files/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "SQL basics 2";
+    var mkdocs_page_input_path = "materials/04_sql_basics_02.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="./SQL basics 2 - Databases [TTC2020]_files/jquery-2.1.1.min.js.download" defer=""></script>
+  <script src="./SQL basics 2 - Databases [TTC2020]_files/modernizr-2.8.3.min.js.download" defer=""></script>
+  <script src="./SQL basics 2 - Databases [TTC2020]_files/highlight.min.js.download"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document" data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed="">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/" class="icon icon-home"> Databases [TTC2020]</a>
+        <div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here">
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Course overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tools</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/environment_preparation_guide/">Environment preparation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/db_query_guide/">Database query guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/data_modeling_guide/">Data modeling guide</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Materials</span>
+    <ul class="subnav" style="display: list-item;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/01_introduction_to_databases/">Introduction to databases</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/">Database design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/">SQL basics 1</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/">SQL basics 2</a>
+    <ul class="subnav" style="display: block;">
+            
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/#sql-basics-2">SQL basics 2</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/#aggregate-functions">Aggregate functions</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/#string-functions">String functions</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/#numeric-functions">Numeric functions</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/#convert-the-data-type-of-a-value-cast">Convert the data type of a value (CAST)</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/#case-statement">CASE statement</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/#dates">Dates</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/#grouping-the-information-group-by">Grouping the information (GROUP BY)</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/">SQL basics 3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/">SQL basics 4</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/">SQL basics 5</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/">NoSQL</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Exercises</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/01_ex_database_design/">Exercise set 1 (Database design)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/02_ex_sql_basics_01/">Exercise set 2 (SQL basics 1)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/03_ex_sql_basics_02/">Exercise set 3 (SQL basics 2)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/04_ex_sql_basics_03/">Exercise set 4 (SQL basics 3)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/05_ex_sql_basics_04/">Exercise set 5 (SQL basics 4)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/06_ex_sql_basics_05/">Exercise set 6 (SQL basics 5)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/07_ex_nosql/">Exercise set 7 (NoSQL)</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Databases [TTC2020]</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Docs</a> »</li>
+    
+      
+        
+          <li>Materials »</li>
+        
+      
+    
+    <li>SQL basics 2</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="sql-basics-2">SQL basics 2</h1>
+<h2 id="aggregate-functions">Aggregate functions</h2>
+<ul>
+<li>In SQL language numerical data can be processed with aggregate functions</li>
+<li>
+<p>The following aggregate functions are supported:</p>
+<ul>
+<li><strong>AVG</strong> → Average of values</li>
+<li><strong>SUM</strong> → Total from addition</li>
+<li><strong>MIN</strong> → Smallest value</li>
+<li><strong>MAX</strong> → Greatest value</li>
+<li><strong>COUNT</strong> → Amount of values</li>
+</ul>
+</li>
+<li>
+<p><strong>Important</strong>: NULL value will not be counted unless COUNT(*) is used!</p>
+</li>
+</ul>
+<div class="example-block">
+
+<h4>Example 1</h4>
+
+<p class="example-description">Select highest, lowest and average salary.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MAX</span>(salary) <span class="hljs-keyword">AS</span> maximum, <span class="hljs-keyword">MIN</span>(salary) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">minimum</span>, <span class="hljs-keyword">AVG</span>(salary) <span class="hljs-keyword">as</span> average
+<span class="hljs-keyword">FROM</span> Employee;
+</code></pre>
+
+
+</div>
+
+<div class="example-block">
+
+<h4>Example 2</h4>
+
+<p class="example-description">Count how many employees work in the company whose salary exceeds 2900.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">count</span>
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">WHERE</span> salary &gt; <span class="hljs-number">2900</span>;
+</code></pre>
+
+
+</div>
+
+<div class="example-block">
+
+<h4>Example 3</h4>
+
+<p class="example-description">Find out what is the total of salaries among employees.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">SUM</span>(salary)
+<span class="hljs-keyword">FROM</span> Employee;
+</code></pre>
+
+
+</div>
+
+<h2 id="string-functions">String functions</h2>
+<ul>
+<li>String functions are used to manipulate stored string values for the result set</li>
+<li>Some of string functions supported in SQL language are listed below<ul>
+<li><strong>SUBSTRING</strong> → Select part of original string</li>
+<li><strong>RIGHT</strong> → Select given amount of characters from string starting from right</li>
+<li><strong>LEFT</strong> → Select given amount of characters from string starting from left</li>
+<li><strong>UPPER</strong> → Transforms lower-case letters to upper-case letters</li>
+<li><strong>LOWER</strong> → Transforms upper-case letters to lower-case letters</li>
+<li><strong>LENGTH</strong> → Get the length of the string</li>
+<li><strong>CONCAT</strong> → Combine several strings into one</li>
+</ul>
+</li>
+</ul>
+<div class="example-block">
+
+<h4>Example 1</h4>
+
+<p class="example-description">Select three characters from surname starting from second character. Results should be ordered by surname.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> surname, <span class="hljs-keyword">SUBSTRING</span>(surname, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <span class="hljs-keyword">AS</span> surname_part
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> surname;
+</code></pre>
+
+
+- This same query can also be defined with ANSI format like below
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> surname, <span class="hljs-keyword">SUBSTRING</span>(surname <span class="hljs-keyword">FROM</span> <span class="hljs-number">2</span> <span class="hljs-keyword">FOR</span> <span class="hljs-number">3</span>) <span class="hljs-keyword">AS</span> surname_part
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> surname;
+</code></pre>
+
+
+</div>
+
+<div class="example-block">
+
+<h4>Example 2</h4>
+
+<p class="example-description">Present full names of employees in format 'surname, firstname'.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CONCAT</span>(surname, <span class="hljs-string">', '</span>, firstname) <span class="hljs-keyword">AS</span> fullname
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> surname;
+</code></pre>
+
+
+</div>
+
+<h2 id="numeric-functions">Numeric functions</h2>
+<ul>
+<li>There are many numeric functions available for SQL languages</li>
+<li>On this course we'll use the following numeric function:<ul>
+<li><strong>ROUND</strong> → Returns a number rounded to a certain number including given decimal places. Syntax: ROUND(number, decimals)</li>
+</ul>
+</li>
+</ul>
+<div class="example-block">
+
+<h4>Example 1</h4>
+
+<p class="example-description">Count the average daily salary of employees.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ROUND</span>(<span class="hljs-keyword">AVG</span>(salary/<span class="hljs-number">30</span>),<span class="hljs-number">2</span>) <span class="hljs-keyword">AS</span> daily_salary
+<span class="hljs-keyword">FROM</span> Employee;
+</code></pre>
+
+
+</div>
+
+<h2 id="convert-the-data-type-of-a-value-cast">Convert the data type of a value (CAST)</h2>
+<ul>
+<li>In SQL language data types can be converted if needed using <strong>CAST</strong></li>
+<li>Conversion can be done from numeric value to string and vice versa</li>
+<li>Below are some examples of changing value data type with <strong>CAST</strong></li>
+</ul>
+<pre><code class="language-sql hljs">CAST(date AS CHAR(10))          <span class="hljs-comment">-- converts date to string</span>
+CAST(num AS INT)                <span class="hljs-comment">-- converts string consisting of numbers to integer</span>
+CAST(salary/30 AS DECIMAL(7,2)) <span class="hljs-comment">-- converts daily salary into format 99999.99</span>
+CAST(dep_num AS CHAR(5))        <span class="hljs-comment">-- converts numeric dep_num field to string</span>
+</code></pre>
+<h2 id="case-statement">CASE statement</h2>
+<ul>
+<li>Conditions can be formed in SQL with <strong>CASE</strong> statement</li>
+<li>CASE statement returns a value when first condition is met and the reading of conditions is stopped</li>
+<li>If no conditions are True, value from the <strong>ELSE</strong> clause is returned</li>
+<li>New column will be created at the end of CASE statement using <strong>END AS</strong> clause</li>
+<li>CASE statement syntax is presented below</li>
+</ul>
+<pre><code class="language-sql hljs">CASE column
+    WHEN condition THEN value1
+    ELSE value2
+<span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> aliasname;
+</code></pre>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Select and prioritize salaries: When salary is less or equal than 2000 → 'Low' and when salary is greater or equal than 3000 → 'High'. In addition, the province of cities should be presented.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname,
+    <span class="hljs-keyword">CASE</span> city
+        <span class="hljs-keyword">WHEN</span> <span class="hljs-string">'Jyväskylä'</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'Central Finland'</span>
+        <span class="hljs-keyword">WHEN</span> <span class="hljs-string">'Helsinki'</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'Southern Finland'</span>
+        <span class="hljs-keyword">ELSE</span> <span class="hljs-string">'Other parts of Finland'</span>
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> Area,
+    <span class="hljs-keyword">CASE</span>
+        <span class="hljs-keyword">WHEN</span> salary &lt;= <span class="hljs-number">2000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'Low'</span>
+        <span class="hljs-keyword">WHEN</span> salary &gt;= <span class="hljs-number">3000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'High'</span>
+        <span class="hljs-keyword">ELSE</span> <span class="hljs-string">'Normal'</span>
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> Salary_grade
+<span class="hljs-keyword">FROM</span> Employee;
+</code></pre>
+
+
+</div>
+
+<ul>
+<li><strong>Important:</strong> As can be seen from the example above, when comparing numeric values the column name is included in WHEN clause (Not after CASE clause!).</li>
+</ul>
+<h2 id="dates">Dates</h2>
+<ul>
+<li>In MySQL dates are in format <em>yyyy-mm-dd</em></li>
+<li>The difference in two dates can be calculated with <strong>DATEDIFF</strong> function</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">List employees with the age of stored data (in other words how old is the data).</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, <span class="hljs-built_in">date</span>, <span class="hljs-keyword">CURRENT_DATE</span> <span class="hljs-keyword">as</span> today, <span class="hljs-keyword">DATEDIFF</span>(<span class="hljs-keyword">CURRENT_DATE</span>, <span class="hljs-built_in">date</span>) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">difference</span>
+<span class="hljs-keyword">FROM</span> Employee;
+</code></pre>
+
+
+</div>
+
+<h2 id="grouping-the-information-group-by">Grouping the information (GROUP BY)</h2>
+<ul>
+<li>Data in result set can be grouped with <strong>GROUP BY</strong> clause</li>
+<li>All rows having the same value will be grouped</li>
+<li>Usually we want to group results from aggregate functions (AVG, SUM, MIN, MAX, COUNT)</li>
+<li><strong>Important:</strong> If SELECT statement includes both regular columns and columns created with aggregate functions, all regular columns must be listed in GROUP BY clause!</li>
+</ul>
+<div class="example-block">
+
+<h4>Example 1</h4>
+
+<p class="example-description">Count the average of salaries from each city.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> city, <span class="hljs-keyword">AVG</span>(salary) <span class="hljs-keyword">AS</span> average_salary
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> city;
+</code></pre>
+
+
+</div>
+
+<ul>
+<li>Grouped results can be further filtered by using HAVING clause</li>
+<li>The order should always be like this:<ul>
+<li><strong>WHERE</strong> → filter results before grouping</li>
+<li><strong>GROUP BY</strong> → filtered results are grouped</li>
+<li><strong>HAVING</strong> → grouped results can be filtered</li>
+</ul>
+</li>
+</ul>
+<div class="example-block">
+
+<h4>Example 2</h4>
+
+<p class="example-description">Select vendors who have sold at least three products with price greater than 100.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> vendor, <span class="hljs-keyword">COUNT</span>(*)
+<span class="hljs-keyword">FROM</span> Product
+<span class="hljs-keyword">WHERE</span> price &gt; <span class="hljs-number">100</span>
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> vendor
+<span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(*) &gt; <span class="hljs-number">2</span>;
+</code></pre>
+
+
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/" class="btn btn-neutral float-right" title="SQL basics 3">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/" class="btn btn-neutral" title="SQL basics 1"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/" style="color: #fcfcfc;">« Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/" style="color: #fcfcfc">Next »</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="./SQL basics 2 - Databases [TTC2020]_files/theme.js.download" defer=""></script>
+      <script src="./SQL basics 2 - Databases [TTC2020]_files/main.js.download" defer=""></script>
+
+
+
+</body></html>

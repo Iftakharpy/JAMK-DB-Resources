@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<!-- saved from url=(0080)https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/ -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Antti Häkkinen">
+  <link rel="shortcut icon" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/img/favicon.ico">
+  <title>NoSQL - Databases [TTC2020]</title>
+  <link href="./NoSQL - Databases [TTC2020]_files/css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="./NoSQL - Databases [TTC2020]_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./NoSQL - Databases [TTC2020]_files/theme_extra.css" type="text/css">
+  <link rel="stylesheet" href="./NoSQL - Databases [TTC2020]_files/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "NoSQL";
+    var mkdocs_page_input_path = "materials/08_nosql.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="./NoSQL - Databases [TTC2020]_files/jquery-2.1.1.min.js.download" defer=""></script>
+  <script src="./NoSQL - Databases [TTC2020]_files/modernizr-2.8.3.min.js.download" defer=""></script>
+  <script src="./NoSQL - Databases [TTC2020]_files/highlight.min.js.download"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document" data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed="">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/" class="icon icon-home"> Databases [TTC2020]</a>
+        <div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here">
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Course overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tools</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/environment_preparation_guide/">Environment preparation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/db_query_guide/">Database query guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/data_modeling_guide/">Data modeling guide</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Materials</span>
+    <ul class="subnav" style="display: list-item;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/01_introduction_to_databases/">Introduction to databases</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/">Database design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/">SQL basics 1</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/">SQL basics 2</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/">SQL basics 3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/">SQL basics 4</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/">SQL basics 5</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/">NoSQL</a>
+    <ul class="subnav" style="display: block;">
+            
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#nosql">NoSQL</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#general">General</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#for-what-nosql-is-good-for">For what NoSQL is good for?</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#does-nosql-replace-sql">Does NoSQL replace SQL?</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#categorization-of-nosql-databases">Categorization of NoSQL databases</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#document-stores">Document stores</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#mongodb">MongoDB</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#general_1">General</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#comparison-of-mongodb-and-mysqlmariadb">Comparison of MongoDB and MySQL/MariaDB</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#installing-mongodb">Installing MongoDB</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#linux-guide">Linux guide</a></li>
+    
+
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#using-mongodb">Using MongoDB</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#choosing-a-database">Choosing a database</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#creating-documents">Creating documents</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#listing-collections-and-documents">Listing collections and documents</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#generating-test-data-with-for-loop">Generating test data with for loop</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#functions">Functions</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#searching-the-data">Searching the data</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#mongodb-crud">MongoDB CRUD</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#retrieve-data">Retrieve data</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#insert-data">Insert data</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#update-data">Update data</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#data-removal">Data removal</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#data-insertion-or-update-upsert">Data insertion or update (UPSERT)</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#aggregate-functions">Aggregate functions</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#data-models-in-mongodb">Data models in MongoDB</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#one-to-many-connection-as-embedded-data-model">One-to-many connection as Embedded Data Model</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/#one-to-many-connection-as-normalized-data-model">One-to-many connection as Normalized Data Model</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Exercises</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/01_ex_database_design/">Exercise set 1 (Database design)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/02_ex_sql_basics_01/">Exercise set 2 (SQL basics 1)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/03_ex_sql_basics_02/">Exercise set 3 (SQL basics 2)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/04_ex_sql_basics_03/">Exercise set 4 (SQL basics 3)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/05_ex_sql_basics_04/">Exercise set 5 (SQL basics 4)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/06_ex_sql_basics_05/">Exercise set 6 (SQL basics 5)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/07_ex_nosql/">Exercise set 7 (NoSQL)</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Databases [TTC2020]</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Docs</a> »</li>
+    
+      
+        
+          <li>Materials »</li>
+        
+      
+    
+    <li>NoSQL</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="nosql">NoSQL</h1>
+<h2 id="general">General</h2>
+<ul>
+<li>NoSQL = Not only SQL</li>
+<li>Unlike SQL NoSQL is a non tabular database meaning that data is stored differently compared to SQL where data is stored in tables</li>
+<li>So there are different ways storing data with NoSQL products</li>
+</ul>
+<h2 id="for-what-nosql-is-good-for">For what NoSQL is good for?</h2>
+<ul>
+<li>Process a great amount of data</li>
+<li>Lots of simultaneos read and write operations</li>
+<li>Systems requiring distribution and scalability</li>
+<li>Better for storing non-critical data</li>
+<li>Systems that have constantly changing data types and structures used for storing data (for example need for adding new columns)</li>
+</ul>
+<h2 id="does-nosql-replace-sql">Does NoSQL replace SQL?</h2>
+<ul>
+<li>No</li>
+<li>Although NoSQL has benefits, it also has limitations compared to SQL:<ul>
+<li>NoSQL is missing the traditional features implemented in SQL<ul>
+<li>Most of the software logic must be implemented (developer responsibility)</li>
+</ul>
+</li>
+<li>Not suggested for storing critical data</li>
+</ul>
+</li>
+<li>There is no database that is good for all purposes<ul>
+<li>Database should always be chosen according to project needs</li>
+</ul>
+</li>
+</ul>
+<h2 id="categorization-of-nosql-databases">Categorization of NoSQL databases</h2>
+<ul>
+<li>Key value stores (Voldemort, Redis, Membase)</li>
+<li>Document stores (Riak, MongoDB, CouchDB)</li>
+<li>Column family stores (Cassandra, HBase, HyperTable)</li>
+<li>Graph databases (Sesame, Oracle BigData, Neo4J, GraphDB)</li>
+</ul>
+<h2 id="document-stores">Document stores</h2>
+<ul>
+<li>We are going to go deeper for MongoDB in this lecture so we need to check the basics of document stores which are the storing method for data in MongoDB</li>
+<li>Document stores are a bit more complicated than key value stores (document stores are semi-structured)</li>
+<li>Document stores hold document collections which contain key value pairs</li>
+<li>Each document has a unique identifier (similar to primary key in SQL)</li>
+<li>Different amount of differing key value pairs can be stored in one document</li>
+<li>Data can be searched on the basis of any field</li>
+<li>Like in SQL, logical operators (AND, OR, BETWEEN etc.) can be utilized in searches</li>
+<li>Usually documents are stored in JSON format (<em>JavaScript Object Notation</em>)</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Below is an example of document collection called <i>Employee</i> in JSON format. Collection includes three documents. Each document has a unique identifier.</p><p>
+
+
+</p><pre><code class="language-json hljs">{
+    document-key: <span class="hljs-number">100</span>,
+    name: <span class="hljs-string">"David"</span>,
+    pc-code: <span class="hljs-string">"COM-23"</span>,
+    email: <span class="hljs-string">"david@company.com"</span>,
+    phone: <span class="hljs-string">"+3581111111"</span>,
+    degree: <span class="hljs-string">"B.Eng."</span>
+}
+{
+    document-key: <span class="hljs-number">101</span>,
+    name: <span class="hljs-string">"Chris"</span>,
+    pc-code: <span class="hljs-string">"COM-10"</span>,
+    email: <span class="hljs-string">"chris@company.com"</span>,
+    degree: [ <span class="hljs-string">"B.Eng."</span>, <span class="hljs-string">"M.Sc. (Tech)"</span> ]
+}
+{
+    document-key: <span class="hljs-number">102</span>,
+    name: <span class="hljs-string">"Jane"</span>,
+    pc-code: <span class="hljs-string">"COM-05"</span>,
+    email: <span class="hljs-string">"jane@company.com"</span>
+}
+</code></pre>
+
+
+</div>
+
+<h1 id="mongodb">MongoDB</h1>
+<h2 id="general_1">General</h2>
+<ul>
+<li>Name MongoDB comes from hu<strong>mongo</strong>us</li>
+<li>One of the most popular NoSQL databases</li>
+<li>Development started in 2007 and OpenSource distribution started in 2009</li>
+<li>Flexible and scalable like other NoSQL databases</li>
+<li>One mongo document can hold 16 Megabytes of data at maximum</li>
+<li>Documents are stored in BSON objects (<em>Binary JSON</em>)</li>
+<li>MongoDB is used for example in Cragslist which is an American classified advertisements website</li>
+</ul>
+<h2 id="comparison-of-mongodb-and-mysqlmariadb">Comparison of MongoDB and MySQL/MariaDB</h2>
+<ul>
+<li>In MySQL one field cannot hold multiple values whereas in MongoDB this is possible for example by using an array</li>
+<li>Many-to-Many connections must be broken down in MySQL into a separate table, but in MongoDB all information from separate table could be included in existing documents</li>
+<li>There are no foreign keys with integrity requirements and options in MongoDB (for example ON DELETE CASCADE in SQL)</li>
+<li>MongoDB has no transactions and joins</li>
+<li>All of the properties mentioned above are handled using document structure and nested arrays in MongoDB and implementing software logic for handling document data</li>
+<li>MongoDB has <strong>UPSERT</strong> function (INSERT + UPDATE), which is used for the following:<ul>
+<li>If document does not exist yet in the collection, it will be created</li>
+<li>If document exists, it will be updated</li>
+</ul>
+</li>
+</ul>
+<h2 id="installing-mongodb">Installing MongoDB</h2>
+<h1 id="linux-guide">Linux guide</h1>
+<ul>
+<li>
+<p>This guide is for installing MongoDB on Ubuntu 20.04</p>
+</li>
+<li>
+<p>Import the public GPG key for the latest MongoDB version (It is advisable to check the latest version from <a href="https://repo.mongodb.org/apt/ubuntu/dists/focal/mongodb-org/">here</a> before installation)</p>
+</li>
+</ul>
+<pre><code class="language-shell hljs">curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+</code></pre>
+<ol>
+<li>Run the following command (change version numbers according to version you desire to install):</li>
+</ol>
+<pre><code class="language-shell hljs">echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+</code></pre>
+<ol>
+<li>Update package listing</li>
+</ol>
+<pre><code class="language-shell hljs">sudo apt update
+</code></pre>
+<ol>
+<li>Install MongoDB</li>
+</ol>
+<pre><code class="language-shell hljs">sudo apt install mongodb-org
+</code></pre>
+<ol>
+<li>Check that service has started without problems by using the command below (should be in <strong>Active</strong> state)</li>
+</ol>
+<pre><code class="language-shell hljs">sudo systemctl status mongod
+</code></pre>
+<h1 id="using-mongodb">Using MongoDB</h1>
+<ul>
+<li>Start MongoDB client by issuing the following command:</li>
+</ul>
+<pre><code class="language-shell hljs">mongo
+</code></pre>
+<ul>
+<li>
+<p>Basically MongoDB client includes</p>
+<ul>
+<li>Full JavaScript environment</li>
+<li>Connectivity to MongoDB server (mongod daemon running in port 27017)</li>
+</ul>
+</li>
+<li>
+<p>MongoDB client commands can be listed with</p>
+</li>
+</ul>
+<pre><code class="language-json hljs">&gt; help
+</code></pre>
+<h2 id="choosing-a-database">Choosing a database</h2>
+<ul>
+<li>All available databases can be listed with the following command:</li>
+</ul>
+<pre><code class="language-json hljs">&gt; show dbs
+</code></pre>
+<ul>
+<li>Active database must be selected in order to target commands</li>
+<li>Active database can be changed with <strong>use</strong> command</li>
+</ul>
+<pre><code class="language-json hljs">&gt; use mydb
+switched to db mydb
+&gt;
+</code></pre>
+<ul>
+<li><strong>Important</strong>: Database does not have to exists when choosing it! It will be created when data is first inserted.</li>
+<li>Active database can be checked with <strong>db</strong> command</li>
+</ul>
+<pre><code class="language-json hljs">&gt; db
+mydb
+&gt;
+</code></pre>
+<h2 id="creating-documents">Creating documents</h2>
+<ul>
+<li>New documents can be created using JavaScript Object Notation (<em>JSON</em>)</li>
+<li>Below is an example of creating documents <strong>j</strong> and <strong>k</strong></li>
+</ul>
+<pre><code class="language-json hljs">j = { name : <span class="hljs-string">"mongo"</span> }
+k = { x : <span class="hljs-number">3</span> }
+</code></pre>
+<ul>
+<li>Now these documents can be inserted to be part of a collection</li>
+<li>Let's add these two documents into the collection called <em>testData</em></li>
+</ul>
+<pre><code class="language-json hljs">db.testData.insert( j )
+db.testData.insert( k )
+</code></pre>
+<ul>
+<li>At this point mydb database should be visible with <strong>show dbs</strong> command</li>
+</ul>
+<h2 id="listing-collections-and-documents">Listing collections and documents</h2>
+<ul>
+<li>Collections can be listed with <strong>show</strong> command</li>
+</ul>
+<pre><code class="language-json hljs">&gt; show collections
+testData
+&gt;
+</code></pre>
+<ul>
+<li>Individual documents from collection can be listed with <strong>find()</strong> method</li>
+</ul>
+<pre><code class="language-json hljs">&gt; db.testData.find()
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b42706411fca9d3d7f79"</span>), <span class="hljs-attr">"name"</span> : <span class="hljs-string">"mongo"</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b42806411fca9d3d7f7a"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">3</span> }
+</code></pre>
+<ul>
+<li><strong>Important</strong>: Each MongoDB document has a unique _id value! This will be generated automatically if it was not given manually during data insertion (similar to AUTO_INCREMENT in MySQL/MariaDB)</li>
+</ul>
+<h2 id="generating-test-data-with-for-loop">Generating test data with for loop</h2>
+<ul>
+<li>A great amount of test data can be generated effectively if needed</li>
+<li>Below is an example where ten new documents will be added to collection</li>
+</ul>
+<pre><code class="language-json hljs">for (var i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++) {
+    db.testData.insert( { x : i } )
+}
+</code></pre>
+<ul>
+<li>Let's verify that new lines can be found from the collection</li>
+</ul>
+<pre><code class="language-json hljs">&gt; db.testData.find()
+
+...{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b42706411fca9d3d7f79"</span>), <span class="hljs-attr">"name"</span> : <span class="hljs-string">"mongo"</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b42806411fca9d3d7f7a"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">3</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b5eb06411fca9d3d7f7b"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">1</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b5eb06411fca9d3d7f7c"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">2</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b5eb06411fca9d3d7f7d"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">3</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b5eb06411fca9d3d7f7e"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">4</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b5eb06411fca9d3d7f7f"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">5</span> }
+...
+has more
+&gt;
+</code></pre>
+<ul>
+<li>As can be seen from the output, even if value 3 can be found two times these lines still have a unique _id value</li>
+<li>If there is a notification called <em>has more</em> at the end of the output, it means that only the first rows are presented</li>
+<li>The following values can be retrieved with <strong>it</strong> command (<em>Iterate the Cursor</em>)</li>
+</ul>
+<pre><code class="language-json hljs">&gt; it
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b5eb06411fca9d3d7f8d"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">19</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b5eb06411fca9d3d7f8e"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">20</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b5eb06411fca9d3d7f8f"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">21</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b5eb06411fca9d3d7f90"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">22</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b5eb06411fca9d3d7f91"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">23</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b5eb06411fca9d3d7f92"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">24</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b5eb06411fca9d3d7f93"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">25</span> }
+&gt;
+</code></pre>
+<h2 id="functions">Functions</h2>
+<ul>
+<li>It is possible to use functions in MongoDB like in JavaScript</li>
+<li>Below is an example where function will be created and then tested for data insertion</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Create a function, which will be used to insert data to document collection. Function will take the following arguments:</p>
+
+<ul>
+    <li>Database name (<i>dbName</i>)</li>
+    <li>Column name (<i>colName</i>)</li>
+    <li>Number of rows to be added (<i>numRows</i>)</li>
+</ul>
+
+<p class="example-description">At the end function will inform user the total amount of documents stored in the collection.</p>
+
+
+<pre><code class="language-json hljs">function insertData(dbName, colName, numRows) {
+  var col = db.getSiblingDB(dbName).getCollection(colName);
+  for (i = 0; i &lt; numRows; i++) {
+    col.insert({x:i});
+  }
+  print(<span class="hljs-string">"There are now "</span> + col.count() + <span class="hljs-string">" documents stored in the collection."</span>);
+}
+</code></pre>
+
+
+<p class="example-description">Let's test the function operation.</p>
+
+
+<pre><code class="language-json hljs">&gt; insertData(<span class="hljs-string">"test"</span>, <span class="hljs-string">"testData"</span>, <span class="hljs-number">400</span>)
+There are now <span class="hljs-number">442</span> documents stored in the collection.
+</code></pre>
+
+
+</div>
+
+<h2 id="searching-the-data">Searching the data</h2>
+<ul>
+<li><strong>find</strong> method can be used to find desired documents from the collection in MongoDB</li>
+<li>Below is an example where all data from testData collection is stored in variable <strong>c</strong></li>
+</ul>
+<pre><code class="language-json hljs">var c = db.testData.find()
+</code></pre>
+<ul>
+<li>All documents can be printed for example using while loop like in the example below</li>
+</ul>
+<pre><code class="language-json hljs">while ( c.hasNext() ) printjson( c.next() )
+</code></pre>
+<ul>
+<li>Individual documents can be printed from result set like in the example below</li>
+</ul>
+<pre><code class="language-json hljs">&gt; var c = db.testData.find()
+&gt; printjson( c [ <span class="hljs-number">4</span> ] )
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b92706411fca9d3d7f98"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">4</span> }
+</code></pre>
+<ul>
+<li>Searching for a particular document with <strong>find</strong> method works by giving key value pair as an argument</li>
+</ul>
+<pre><code class="language-json hljs">db.testData.find( { x : <span class="hljs-number">18</span> } )
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b92706411fca9d3d7fa6"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">18</span> }
+</code></pre>
+<ul>
+<li>Document count presented in result set can be limited with <strong>limit</strong> method</li>
+</ul>
+<pre><code class="language-json hljs">&gt; db.testData.find().limit(<span class="hljs-number">3</span>)
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b92706411fca9d3d7f94"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">0</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b92706411fca9d3d7f95"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">1</span> }
+{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"54d8b92706411fca9d3d7f96"</span>), <span class="hljs-attr">"x"</span> : <span class="hljs-number">2</span> }
+</code></pre>
+<h1 id="mongodb-crud">MongoDB CRUD</h1>
+<ul>
+<li>
+<p>Basic database operations can be described with CRUD:</p>
+<ul>
+<li><strong>C</strong>reate</li>
+<li><strong>R</strong>ead</li>
+<li><strong>U</strong>pdate</li>
+<li><strong>D</strong>elete</li>
+</ul>
+</li>
+<li>
+<p>As stated before, document is a JSON object including key value pairs (see example below)</p>
+</li>
+</ul>
+<pre><code class="language-json hljs">{
+  name: <span class="hljs-string">"sue"</span>,
+  age: <span class="hljs-number">26</span>,
+  status: <span class="hljs-string">"A"</span>,
+  groups: [ <span class="hljs-string">"news"</span>, <span class="hljs-string">"sports"</span> ]
+}
+</code></pre>
+<ul>
+<li>Collection is a group of documents with common index</li>
+<li>Structure between documents can be different</li>
+<li>Compared to SQL:<ul>
+<li>Collection [NoSQL] → Table [SQL]</li>
+<li>Document [NoSQL] → Table row [SQL]</li>
+</ul>
+</li>
+</ul>
+<h2 id="retrieve-data">Retrieve data</h2>
+<ul>
+<li>Query will be targeted to particular document collection (In relational databases: "What tables")</li>
+<li>Query includes the search criteria (In relational databases: "What rows")</li>
+<li>Query includes modifier for describing how results will be presented (In relational databases: ORDER BY, LIMIT...)</li>
+<li>Search will be executed using find method (In relational databases: SELECT)</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Select persons who are 18 years old. Order result set by age.</p>
+
+
+<pre><code class="language-json hljs">db.users.find( { age: {$gt: <span class="hljs-number">18</span> } } ).sort( {age: <span class="hljs-number">1</span> } )
+COLLECTION=== QUERYCriteria========  MODIFIER=========
+</code></pre>
+
+
+- In MySQL the following query would be used:
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> *
+<span class="hljs-keyword">FROM</span> <span class="hljs-keyword">users</span>
+<span class="hljs-keyword">WHERE</span> age = <span class="hljs-number">18</span>
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> age;
+</code></pre>
+
+
+</div>
+
+<h2 id="insert-data">Insert data</h2>
+<ul>
+<li>New data can be added to collection with <strong>insert</strong> method</li>
+<li>Example for inserting a document to users collection:</li>
+</ul>
+<pre><code class="language-json hljs">db.users.insert(
+    {
+     name: <span class="hljs-string">"sue"</span>,
+     age: <span class="hljs-number">26</span>,
+     status: <span class="hljs-string">"A"</span>,
+     groups: [ <span class="hljs-string">"news"</span>, <span class="hljs-string">"sports"</span> ]
+    }
+)
+</code></pre>
+<ul>
+<li>In MySQL the following query would be used:</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">users</span> (<span class="hljs-keyword">name</span>, age, <span class="hljs-keyword">status</span> )
+<span class="hljs-keyword">VALUES</span> (<span class="hljs-string">"sue"</span>, <span class="hljs-number">26</span>, <span class="hljs-string">"A"</span> );
+</code></pre>
+<h2 id="update-data">Update data</h2>
+<ul>
+<li>Existing data can be updated with <strong>update</strong> method</li>
+<li>Below is an example of updating person data in users collection</li>
+</ul>
+<pre><code class="language-json hljs">db.users.update(
+   { age: <span class="hljs-number">26</span> },
+   { $set: { status: <span class="hljs-string">"B"</span> } },
+   { multi: <span class="hljs-literal">true</span> }
+)
+</code></pre>
+<ul>
+<li>As can be seen from the example above persons who are 26 years old will be searched from the collection</li>
+<li>All documents matching the age condition will be targeted and status key value will be updated to "B"</li>
+<li>By default if multi key value will not be set (false), only the first matching document will be targeted</li>
+<li>In MySQL the following query would be used:</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">users</span>
+<span class="hljs-keyword">SET</span> <span class="hljs-keyword">status</span> = <span class="hljs-string">'A'</span>
+<span class="hljs-keyword">WHERE</span> age = <span class="hljs-number">18</span>;
+</code></pre>
+<h2 id="data-removal">Data removal</h2>
+<ul>
+<li><strong>remove</strong> method will be used for document removal</li>
+<li>Below is an example where person with status key value of "D" will be removed</li>
+</ul>
+<pre><code class="language-json hljs">db.users.remove(
+   { status: <span class="hljs-string">"D"</span> }
+)
+</code></pre>
+<ul>
+<li>In MySQL the following query would be used:</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">users</span>
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">status</span> = <span class="hljs-string">'D'</span>;
+</code></pre>
+<ul>
+<li>Another example would be to remove all persons whose age is greater than 6</li>
+</ul>
+<pre><code class="language-json hljs">db.users.remove(
+  { age: { $gt: <span class="hljs-number">6</span> } }
+)
+</code></pre>
+<ul>
+<li>As can be seen from the example comparison operator with value is presented inside wave brackets</li>
+<li>Comparison operators are presented with dollar sign ($)</li>
+<li>
+<p>Usable comparison operators are presented below</p>
+<ul>
+<li><strong>$eq</strong>: equal</li>
+<li><strong>$gt</strong>: greater than</li>
+<li><strong>$gte</strong>: greater than or equal</li>
+<li><strong>$lt</strong>: less than</li>
+<li><strong>$lte</strong>: less than or equal</li>
+<li><strong>$ne</strong>: not equal</li>
+<li><strong>$in</strong>: equal than any of the values</li>
+<li><strong>$nin</strong>: not equal compared to any of the values</li>
+</ul>
+</li>
+<li>
+<p>All documents in collection can be removed without giving any filters</p>
+</li>
+</ul>
+<pre><code class="language-json hljs">db.users.remove()
+</code></pre>
+<h2 id="data-insertion-or-update-upsert">Data insertion or update (UPSERT)</h2>
+<ul>
+<li>Upsert is a great feature in MongoDB</li>
+<li>When inserting new document and document with given criteria already exist in collection, existing document will be updated</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Let's insert a new document for user "Sue" if it does not yet exist. Update equivalent document if it already exists.</p>
+
+
+<pre><code class="language-json hljs">db.users.update(
+   { name: 'sue'},
+   { $set: { status: <span class="hljs-string">"A"</span> } },
+   { upsert: <span class="hljs-literal">true</span> }
+)
+</code></pre>
+
+
+</div>
+
+<ul>
+<li><strong>Important</strong>: There is no upsert feature in SQL!</li>
+<li>Another method for executing similar query would be to use <strong>save</strong> method and defining the _id key value</li>
+</ul>
+<pre><code class="language-json hljs">db.products.save( { _id: <span class="hljs-number">100</span>, item: <span class="hljs-string">"water"</span>, qty: <span class="hljs-number">30</span> } )
+</code></pre>
+<ul>
+<li>This updates the document with _id key value of 100 if it exists or</li>
+<li>inserts a new document with _id key value of 100 if it does not exist yet</li>
+<li>If _id key value is not provided with <strong>save</strong> method, new document will be created like with the query below</li>
+</ul>
+<pre><code class="language-json hljs">db.products.save( { item: <span class="hljs-string">"book"</span>, qty: <span class="hljs-number">40</span> } )
+</code></pre>
+<ul>
+<li>Now the _id key value will be generated automatically like stated before</li>
+</ul>
+<pre><code class="language-json hljs">{ <span class="hljs-attr">"_id"</span> : ObjectId(<span class="hljs-string">"50691737d386d8fadbd6b01d"</span>), <span class="hljs-attr">"item"</span> : <span class="hljs-string">"book"</span>, <span class="hljs-attr">"qty"</span> : <span class="hljs-number">40</span> }
+</code></pre>
+<h2 id="aggregate-functions">Aggregate functions</h2>
+<ul>
+<li>MongoDB has aggregate functions similar to SQL products like MySQL, MariaDB, PostgreSQL etc.</li>
+<li>Data grouping is also carried out in similar way</li>
+<li>However MongoDB has its own syntax for this and the following example should give the main idea how it works</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">List all customer orders where order count is greater than 1. Group results by customer id.</p>
+
+
+<pre><code class="language-json hljs">db.orders.aggregate( [
+   {
+     $group: {
+        _id: <span class="hljs-string">"$cust_id"</span>,
+        count: { $sum: <span class="hljs-number">1</span> }
+     }
+   },
+   { $match: { count: { $gt: <span class="hljs-number">1</span> } } }
+] )
+</code></pre>
+
+
+- Similarly this would be handled with MySQL like this:
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> cust_id, <span class="hljs-keyword">count</span>(*)
+<span class="hljs-keyword">FROM</span> orders
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> cust_id
+<span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">count</span>(*) &gt; <span class="hljs-number">1</span>
+</code></pre>
+
+
+</div>
+
+<h1 id="data-models-in-mongodb">Data models in MongoDB</h1>
+<h2 id="one-to-many-connection-as-embedded-data-model">One-to-many connection as Embedded Data Model</h2>
+<ul>
+<li>This model is especially useful if performance is important</li>
+<li>Basically the child document is nested inside parent document</li>
+</ul>
+<p><img alt="Embedded Data Model in MongoDB" src="./NoSQL - Databases [TTC2020]_files/embedded_data_model_mongodb.png">
+- <em>Source: http://docs.mongodb.org/manual/core/data-model-design/</em></p>
+<h2 id="one-to-many-connection-as-normalized-data-model">One-to-many connection as Normalized Data Model</h2>
+<ul>
+<li>If using embedded data model would add too much duplicate data, normalized data model should be considered</li>
+<li>This is also useful if many-to-many connection must be broken down between two documents</li>
+</ul>
+<p><img alt="Normalized Data Model in MongoDB" src="./NoSQL - Databases [TTC2020]_files/normalized_data_model_mongodb.png">
+- <em>Source: http://docs.mongodb.org/manual/core/data-model-design/</em></p>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">One-to-many connection between publisher and books. Problem here is that publisher data is duplicated. To optimize this further, the following structure will be created:</p>
+
+
+<pre><code class="language-json hljs">{
+   name: <span class="hljs-string">"O'Reilly Media"</span>,
+   founded: <span class="hljs-number">1980</span>,
+   location: <span class="hljs-string">"CA"</span>,
+   books: [<span class="hljs-number">12346789</span>, <span class="hljs-number">234567890</span>, ...]
+}
+
+{
+    _id: <span class="hljs-number">123456789</span>,
+    title: <span class="hljs-string">"MongoDB: The Definitive Guide"</span>,
+    author: [ <span class="hljs-string">"Kristina Chodorow"</span>, <span class="hljs-string">"Mike Dirolf"</span> ],
+    published_date: ISODate(<span class="hljs-string">"2010-09-24"</span>),
+    pages: <span class="hljs-number">216</span>,
+    language: <span class="hljs-string">"English"</span>
+}
+
+{
+   _id: <span class="hljs-number">234567890</span>,
+   title: <span class="hljs-string">"50 Tips and Tricks for MongoDB Developer"</span>,
+   author: <span class="hljs-string">"Kristina Chodorow"</span>,
+   published_date: ISODate(<span class="hljs-string">"2011-05-06"</span>),
+   pages: <span class="hljs-number">68</span>,
+   language: <span class="hljs-string">"English"</span>
+}
+</code></pre>
+
+
+- Publisher now has books key that includes book document _id key values stored in an array
+
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/01_ex_database_design/" class="btn btn-neutral float-right" title="Exercise set 1 (Database design)">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/" class="btn btn-neutral" title="SQL basics 5"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/" style="color: #fcfcfc;">« Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/01_ex_database_design/" style="color: #fcfcfc">Next »</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="./NoSQL - Databases [TTC2020]_files/theme.js.download" defer=""></script>
+      <script src="./NoSQL - Databases [TTC2020]_files/main.js.download" defer=""></script>
+
+
+
+</body></html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<!-- saved from url=(0090)https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/ -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Antti Häkkinen">
+  <link rel="shortcut icon" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/img/favicon.ico">
+  <title>Database design - Databases [TTC2020]</title>
+  <link href="./Database design - Databases [TTC2020]_files/css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="./Database design - Databases [TTC2020]_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./Database design - Databases [TTC2020]_files/theme_extra.css" type="text/css">
+  <link rel="stylesheet" href="./Database design - Databases [TTC2020]_files/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Database design";
+    var mkdocs_page_input_path = "materials/02_database_design.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="./Database design - Databases [TTC2020]_files/jquery-2.1.1.min.js.download" defer=""></script>
+  <script src="./Database design - Databases [TTC2020]_files/modernizr-2.8.3.min.js.download" defer=""></script>
+  <script src="./Database design - Databases [TTC2020]_files/highlight.min.js.download"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document" data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed="">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/" class="icon icon-home"> Databases [TTC2020]</a>
+        <div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here">
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Course overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tools</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/environment_preparation_guide/">Environment preparation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/db_query_guide/">Database query guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/data_modeling_guide/">Data modeling guide</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Materials</span>
+    <ul class="subnav" style="display: list-item;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/01_introduction_to_databases/">Introduction to databases</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/">Database design</a>
+    <ul class="subnav" style="display: block;">
+            
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/#database-design">Database design</a></li>
+    
+
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/#goals-and-phases-in-database-design">Goals and phases in database design</a></li>
+    
+
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/#terms-entities-and-attributes">Terms - Entities and attributes</a></li>
+    
+
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/#terms-connection-between-entities">Terms - Connection between entities</a></li>
+    
+
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/#database-modeling-phases">Database modeling phases</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/#phase-1-gather-entities">Phase 1 - Gather entities</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/#phase-2-entity-attributes">Phase 2 - Entity attributes</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/#phase-3-relationships-between-entities">Phase 3 - Relationships between entities</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/#phase-4-entity-definitions">Phase 4 - Entity definitions</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/">SQL basics 1</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/">SQL basics 2</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/">SQL basics 3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/">SQL basics 4</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/">SQL basics 5</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/">NoSQL</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Exercises</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/01_ex_database_design/">Exercise set 1 (Database design)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/02_ex_sql_basics_01/">Exercise set 2 (SQL basics 1)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/03_ex_sql_basics_02/">Exercise set 3 (SQL basics 2)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/04_ex_sql_basics_03/">Exercise set 4 (SQL basics 3)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/05_ex_sql_basics_04/">Exercise set 5 (SQL basics 4)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/06_ex_sql_basics_05/">Exercise set 6 (SQL basics 5)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/07_ex_nosql/">Exercise set 7 (NoSQL)</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Databases [TTC2020]</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Docs</a> »</li>
+    
+      
+        
+          <li>Materials »</li>
+        
+      
+    
+    <li>Database design</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="database-design">Database design</h1>
+<ul>
+<li>Database design phase has a lot of common with designing process in software development</li>
+<li>Design phase is especially important in larger database projects</li>
+<li>One of the essential goals in this course is that student will be able to design a database</li>
+</ul>
+<h1 id="goals-and-phases-in-database-design">Goals and phases in database design</h1>
+<ul>
+<li>
+<p>Database design has the following benefits:</p>
+<ul>
+<li><strong>General purpose</strong>: Same structure applies to different environments and for different customers</li>
+<li><strong>Integrity</strong>: Avoid the duplication of data and verify the validity of data</li>
+<li><strong>Coverage</strong>: All necessary information should be stored into the database</li>
+<li><strong>Easing the programming</strong>: Well designed database speeds up the implementation phase</li>
+<li><strong>Simplicity</strong>: Avoid complex database structure</li>
+<li><strong>Performance</strong>: Meet the required time delays in data retrieval and manipulation</li>
+</ul>
+</li>
+<li>
+<p>The phases in database design can be covered with the illustration below</p>
+</li>
+</ul>
+<p><img alt="DB implementation" src="./Database design - Databases [TTC2020]_files/db_implementation_phases.png"></p>
+<ul>
+<li>Phases:<ol>
+<li><strong>Definition</strong>: Target system requirements and content will be defined with customer. Specification of requirements will be the result of this phase</li>
+<li><strong>Design</strong>: Database will be designed using specification of requirements. Entity relationship model will be the result of this phase</li>
+<li><strong>Implementation</strong>: Implementation will be executed using entity relationship model. Application utilizing the implemented database will also be created in this phase if required</li>
+<li><strong>Testing</strong>: Finished database will be tested outside the production environment in order to point out and fix possible bugs</li>
+<li><strong>Deployment and maintenance</strong>: Finished system will be deployed into the production environment</li>
+</ol>
+</li>
+</ul>
+<h1 id="terms-entities-and-attributes">Terms - Entities and attributes</h1>
+<ul>
+<li>Entity is a group of similar items (for example person, student and car)</li>
+<li>Entities will be implemented as tables in the database</li>
+<li>Attributes and attribute values describe entity properties</li>
+<li>Below are some examples of attributes<ul>
+<li>Unambiguous or ambiguous<ul>
+<li>For example personal identification number (unambiguous) or degree (ambiguous)</li>
+</ul>
+</li>
+<li>Permanent or variable<ul>
+<li>For example personal identification number (permanent) or employer (variable)</li>
+</ul>
+</li>
+<li>Required or optional<ul>
+<li>For example first name (required) or email address (optional)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Attributes will be the columns in database table</li>
+<li>Below is an example of database table</li>
+</ul>
+<p><img alt="Database table example" src="./Database design - Databases [TTC2020]_files/db_table_example.png"></p>
+<h1 id="terms-connection-between-entities">Terms - Connection between entities</h1>
+<ul>
+<li>Entities can be connected through couple of different connections</li>
+<li>In entity relationship model, entities and connection between entities can be named to further clarify the model</li>
+<li>Below is an example of one-to-many connection between two entities</li>
+</ul>
+<p><img alt="DB connection example" src="./Database design - Databases [TTC2020]_files/db_connection_example.png"></p>
+<ul>
+<li>Usually verb can be used for naming the entity connection</li>
+<li>This verb can be used for naming the join table between these entities in case of many-to-many connection</li>
+<li>When defining the type of connection between two entities, connection and entities should be read aloud like in the example below</li>
+<li>
+<p>Example:</p>
+<ul>
+<li><em>Many persons play in team</em></li>
+<li><em>Customer creates many orders</em></li>
+<li><em>There are many participants in the event</em></li>
+</ul>
+</li>
+<li>
+<p>These sentences must be read also other way around:</p>
+<ul>
+<li><em>Can person play in many teams?</em></li>
+<li><em>Can one order belong to many customers?</em></li>
+<li><em>Can person participate to many events?</em></li>
+</ul>
+</li>
+</ul>
+<h1 id="database-modeling-phases">Database modeling phases</h1>
+<h2 id="phase-1-gather-entities">Phase 1 - Gather entities</h2>
+<ul>
+<li>In the first phase specification of requirements should be read and gather all possible terms</li>
+<li>From the list of terms, entities and attributes should be distinguished</li>
+<li>Connections between entities are created based on occurrences</li>
+<li>Example of this is presented below</li>
+</ul>
+<p><img alt="Creating entities from occurrences" src="./Database design - Databases [TTC2020]_files/entities_from_occurrences.png"></p>
+<ul>
+<li>As can be seen from the example above, John and Christine both have swimming as a common hobby</li>
+<li>John also has tennis as his hobby</li>
+<li>Here we have two entities: <strong>Person</strong> and <strong>Hobby</strong></li>
+<li>The connection will be created from the following two sentences:<ul>
+<li><em>Can one person have many hobbies?</em> → <em>Yes</em></li>
+<li><em>Can many persons have same hobby?</em> → <em>Yes</em></li>
+</ul>
+</li>
+<li>
+<p>This means that many-to-many connection will be formed between these two entities</p>
+</li>
+<li>
+<p>When all necessary entities have been gathered, it would be a good idea to think whether the amount of entities can be minimized</p>
+</li>
+<li>This way the overall structure of database can be optimized</li>
+<li>Below is an example where three different entities are combined into one entity</li>
+</ul>
+<p><img alt="Entity count optimization" src="./Database design - Databases [TTC2020]_files/entity_count_optimization.png"></p>
+<ul>
+<li>As can be seen from the example above, <em>Movie</em>, <em>Game</em> and <em>Music</em> entities were included as <em>Type</em> attribute values in <em>Entertainment</em> entity</li>
+</ul>
+<h2 id="phase-2-entity-attributes">Phase 2 - Entity attributes</h2>
+<ul>
+<li>In this phase entity attributes are gathered</li>
+<li>Attributes will be used as columns in database table</li>
+<li>
+<p>Attributes can be any of the following type:</p>
+<ul>
+<li><strong>Primary key</strong><ul>
+<li>Required (identifies rows)</li>
+<li>Can be consisted of two or more attributes (Composite key)</li>
+<li>Cannot be empty (NULL)!</li>
+<li>Usually presented by underlined, bolded or letters PK in entity relationship model</li>
+</ul>
+</li>
+<li><strong>Foreign key</strong><ul>
+<li>Can be part of composite key</li>
+<li>Usually presented with italic font or letters FK</li>
+</ul>
+</li>
+<li><strong>Other information (Non-key attributes)</strong></li>
+</ul>
+</li>
+<li>
+<p>Below is an example of database table including all three types of fields</p>
+</li>
+</ul>
+<p><img alt="DB table example 2" src="./Database design - Databases [TTC2020]_files/db_table_example_2.png"></p>
+<ul>
+<li>In addition for giving attribute a name, the actual column in database table also requires a data type to be defined</li>
+<li>Column data type describes what kind of data will be stored into column fields (for example numeric or string)</li>
+<li>Data type also represents how much space stored data will take and whether the data will be fixed-length or variable length</li>
+<li>Below is a list of some of most commonly used data types</li>
+</ul>
+<p><img alt="MySQL data types" src="./Database design - Databases [TTC2020]_files/mysql-data-types.png">
+<em>Source: https://www.mysqltutorial.org/</em></p>
+<h2 id="phase-3-relationships-between-entities">Phase 3 - Relationships between entities</h2>
+<ul>
+<li>When entities and attributes have been defined relationships will be formed between entities</li>
+<li>You'll have to think, just like in the real world, how do entities relate to each other</li>
+<li>There are three types of relationships:<ul>
+<li><strong>One-to-one</strong>: Record in one table is associated with only one record in another table</li>
+<li><strong>One-to-many</strong>: Record in one table can be associated with one or more records in another table</li>
+<li><strong>Many-to-many</strong>: Multiple records in one table are associated with multiple records in another table</li>
+</ul>
+</li>
+<li>Below is an example where employee is connected to team</li>
+</ul>
+<p><img alt="DB design example" src="./Database design - Databases [TTC2020]_files/db_design_example.png"></p>
+<ul>
+<li>As can be seen from the example above, there is a one-to-many connection between two entities<ul>
+<li><em>Team can have multiple employees as members and each employee belongs to one team.</em></li>
+</ul>
+</li>
+<li>Here we can add the conditionality, which shows whether the key value (Team_ID in this case) is required in Employee table or not</li>
+<li>Conditionality can be described like this:<ul>
+<li>'ball' → Field value is optional</li>
+<li>'line' → Field value is required</li>
+</ul>
+</li>
+<li>Below is the same example as shown previously but with added conditionality</li>
+</ul>
+<p><img alt="DB design example 2" src="./Database design - Databases [TTC2020]_files/db_design_example_2.png"></p>
+<ul>
+<li>Now we can read this connection again like this:<ul>
+<li><em>Team can have multiple employees as members and each employee MUST belong to one team.</em></li>
+</ul>
+</li>
+<li>In other words, when field is required, there will be a NOT NULL definition in database table for this field</li>
+<li>
+<p>When adding a new line to the table, field with NOT NULL definition cannot be left empty</p>
+</li>
+<li>
+<p>Many-to-many relationships are not possible in databases and must be solved</p>
+</li>
+<li>This relationship will be solved by inserting a new entity between this kind of connection</li>
+<li>As a result there will be two one-to-many or one-to-one relationships</li>
+<li>Below is an example where there is a many-to-many relationship between customer and product entities</li>
+</ul>
+<p><img alt="DB design example 3" src="./Database design - Databases [TTC2020]_files/db_design_example_3.png"></p>
+<ul>
+<li>In order to create a new entity between two presented entities, think this through a sentence like this:<ul>
+<li><em>Customer orders a product.</em></li>
+</ul>
+</li>
+<li>Now there is a verb called <em>order</em> and this can be utilized while naming a new entity</li>
+<li>Below is an example where many-to-many relationship has been broken down with new entity called Order</li>
+</ul>
+<p><img alt="DB design example 4" src="./Database design - Databases [TTC2020]_files/db_design_example_4.png"></p>
+<ul>
+<li>Now let's read these two new connections again:<ul>
+<li><em>Customer can have many orders, but each order must belong to one customer.</em></li>
+<li><em>Product can belong to many orders and each order can have many products.</em></li>
+</ul>
+</li>
+<li>This means that there is still many-to-many connection between Order and Product entities</li>
+<li>Let's break this down by creating an entity called Products_in_order table between these two entities</li>
+</ul>
+<p><img alt="DB design example 5" src="./Database design - Databases [TTC2020]_files/db_design_example_5.png"></p>
+<ul>
+<li>Now there are no many-to-many relationships left</li>
+<li>In addition, <em>Date</em> and <em>Coupon</em> attributes have been added to Order entity and <em>Quantity</em> attribute have been added to Products_in_order entity</li>
+<li>New attribute descriptions:<ul>
+<li>Date refers to a date when order has been made and Coupon presents the possible discount code given during the order</li>
+<li>Quantity tells how many products of particular type have been added to the order</li>
+</ul>
+</li>
+<li>All these new attributes are entity specific and usually add valuable information which cannot be retrieved from parent entities Customer and Product</li>
+</ul>
+<h2 id="phase-4-entity-definitions">Phase 4 - Entity definitions</h2>
+<ul>
+<li>Entity definition means table comment in database</li>
+<li>Definitions are recommended since they usually give a better picture for a third person viewing the database design</li>
+<li>Definitions can be short and even a short definitions usually gives a better understanding than just looking at table name and fields included</li>
+<li>Below are two examples of a comment for database table:<ul>
+<li><strong>Employee table</strong>: <em>Company employees from all teams are stored in this table.</em></li>
+<li><strong>Team table</strong>: <em>Company teams are stored in this table.</em></li>
+</ul>
+</li>
+<li><strong>Important</strong>: Well designed database is self-explanatory and only by looking its entity relationship model should give a good understanding of the structure and the meaning of fields in most cases!</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/" class="btn btn-neutral float-right" title="SQL basics 1">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/01_introduction_to_databases/" class="btn btn-neutral" title="Introduction to databases"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/01_introduction_to_databases/" style="color: #fcfcfc;">« Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/" style="color: #fcfcfc">Next »</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="./Database design - Databases [TTC2020]_files/theme.js.download" defer=""></script>
+      <script src="./Database design - Databases [TTC2020]_files/main.js.download" defer=""></script>
+
+
+
+</body></html>

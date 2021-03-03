@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/ -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Antti Häkkinen">
+  <link rel="shortcut icon" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/img/favicon.ico">
+  <title>SQL basics 3 - Databases [TTC2020]</title>
+  <link href="./SQL basics 3 - Databases [TTC2020]_files/css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="./SQL basics 3 - Databases [TTC2020]_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./SQL basics 3 - Databases [TTC2020]_files/theme_extra.css" type="text/css">
+  <link rel="stylesheet" href="./SQL basics 3 - Databases [TTC2020]_files/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "SQL basics 3";
+    var mkdocs_page_input_path = "materials/05_sql_basics_03.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="./SQL basics 3 - Databases [TTC2020]_files/jquery-2.1.1.min.js.download" defer=""></script>
+  <script src="./SQL basics 3 - Databases [TTC2020]_files/modernizr-2.8.3.min.js.download" defer=""></script>
+  <script src="./SQL basics 3 - Databases [TTC2020]_files/highlight.min.js.download"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document" data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed="">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/" class="icon icon-home"> Databases [TTC2020]</a>
+        <div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here">
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Course overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tools</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/environment_preparation_guide/">Environment preparation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/db_query_guide/">Database query guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/data_modeling_guide/">Data modeling guide</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Materials</span>
+    <ul class="subnav" style="display: list-item;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/01_introduction_to_databases/">Introduction to databases</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/">Database design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/">SQL basics 1</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/">SQL basics 2</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/">SQL basics 3</a>
+    <ul class="subnav" style="display: block;">
+            
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/#sql-basics-3">SQL basics 3</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/#join">JOIN</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/#inner-join">Inner join</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/#left-and-right-join">Left and Right join</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/#union">UNION</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/#subqueries">Subqueries</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/#in-subqueries">IN subqueries</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/#all-and-any-subqueries">ALL and ANY subqueries</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/#exists-subquery">EXISTS subquery</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/">SQL basics 4</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/">SQL basics 5</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/">NoSQL</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Exercises</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/01_ex_database_design/">Exercise set 1 (Database design)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/02_ex_sql_basics_01/">Exercise set 2 (SQL basics 1)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/03_ex_sql_basics_02/">Exercise set 3 (SQL basics 2)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/04_ex_sql_basics_03/">Exercise set 4 (SQL basics 3)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/05_ex_sql_basics_04/">Exercise set 5 (SQL basics 4)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/06_ex_sql_basics_05/">Exercise set 6 (SQL basics 5)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/07_ex_nosql/">Exercise set 7 (NoSQL)</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Databases [TTC2020]</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Docs</a> »</li>
+    
+      
+        
+          <li>Materials »</li>
+        
+      
+    
+    <li>SQL basics 3</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="sql-basics-3">SQL basics 3</h1>
+<h2 id="join">JOIN</h2>
+<ul>
+<li>In SQL language join allows selecting columns from multiple tables to be shown in the result set</li>
+<li>Join is used in most cases on production environments</li>
+<li>Join is defined with primary and foreign keys connecting tables</li>
+</ul>
+<p><img alt="DB table join" src="./SQL basics 3 - Databases [TTC2020]_files/db_table_join.png"></p>
+<ul>
+<li>
+<p>We are going to go through several join types in this section:</p>
+<ul>
+<li>Inner join</li>
+<li>Left join</li>
+<li>Right join</li>
+</ul>
+</li>
+<li>
+<p>Basically left and right join are considered outer join methods</p>
+</li>
+<li>Figure below presents how data from two tables is gathered in different join methods</li>
+</ul>
+<p><img alt="Join methods" src="./SQL basics 3 - Databases [TTC2020]_files/join_methods.png"></p>
+<h2 id="inner-join">Inner join</h2>
+<ul>
+<li>Inner join only shows values which have corresponding value stored on another table</li>
+<li>Using join in select query requires the following:<ul>
+<li>Tables are presented in <strong>FROM</strong> clause with <strong>INNER JOIN</strong> clause</li>
+<li><strong>ON</strong> clause is used after <strong>FROM</strong> clause and key values connecting tables must be given with <strong>ON</strong></li>
+</ul>
+</li>
+<li>All tables where columns will be selected to result set must be included in <strong>FROM</strong> clause and key columns included in <strong>ON</strong> clause</li>
+<li>Alias name for tables can be used for the whole query when alias is set in <strong>FROM</strong> clause</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Select student's ID and name (firstname and surname) from Student table, grade and date from Grade table and course name from Course table. Order results by student's surname.</p>
+
+<img src="./SQL basics 3 - Databases [TTC2020]_files/db_join_example1.png" alt="Join example 1">
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> S.studentID, S.firstname, S.lastname, G.grade, G.date, C.name
+<span class="hljs-keyword">FROM</span> Course C 
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Grade G <span class="hljs-keyword">ON</span> C.courseID = G.courseID
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Student S <span class="hljs-keyword">ON</span> S.studentID = G.studentID
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> S.surname;
+</code></pre>
+
+
+</div>
+
+<h2 id="left-and-right-join">Left and Right join</h2>
+<ul>
+<li>Outer join methods can be used to show also values that have no corresponding value stored on another table</li>
+<li>
+<p>Description of outer join methods:
+    <strong>Left join</strong>: select all data from the left table
+    <strong>Right join</strong>: select all data from the right table</p>
+</li>
+<li>
+<p>As can be seen from the example below, Student and Attendance tables are connected with StudentID</p>
+</li>
+<li>Let's see how outer joins work on these tables</li>
+</ul>
+<p><img src="./SQL basics 3 - Databases [TTC2020]_files/db_join_example2.png" alt="Join example 2"></p>
+<h3 id="left-join">Left join</h3>
+<ul>
+<li>All values from the left table are returned</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, age, courseID
+<span class="hljs-keyword">FROM</span> Student <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> Attendance
+<span class="hljs-keyword">ON</span> Student.StudentID = Attendance.StudentID;
+</code></pre>
+<ul>
+<li>This query will return the following result set</li>
+</ul>
+<table class="docutils">
+<thead>
+<tr>
+<th>firstname</th>
+<th>surname</th>
+<th>age</th>
+<th>courseID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>John</td>
+<td>Addington</td>
+<td>23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Emma</td>
+<td>Garrick</td>
+<td>22</td>
+<td>Null</td>
+</tr>
+<tr>
+<td>Sam</td>
+<td>Marlee</td>
+<td>24</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Sam</td>
+<td>Marlee</td>
+<td>24</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Mia</td>
+<td>Hailey</td>
+<td>23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Mia</td>
+<td>Hailey</td>
+<td>23</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>As can be seen from the result set above, on the second row there is Null value present since Emma does not have any course attendances stored in the Attendance table</li>
+</ul>
+<h3 id="right-join">Right join</h3>
+<ul>
+<li>All values from the right table are returned</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, age, courseID
+<span class="hljs-keyword">FROM</span> Student <span class="hljs-keyword">right</span> <span class="hljs-keyword">join</span> Attendance
+<span class="hljs-keyword">ON</span> Student.StudentID = Attendance.StudentID;
+</code></pre>
+<ul>
+<li>This query will return the following result set</li>
+</ul>
+<table class="docutils">
+<thead>
+<tr>
+<th>firstname</th>
+<th>surname</th>
+<th>age</th>
+<th>courseID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>John</td>
+<td>Addington</td>
+<td>23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Sam</td>
+<td>Marlee</td>
+<td>24</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Sam</td>
+<td>Marlee</td>
+<td>24</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Mia</td>
+<td>Hailey</td>
+<td>23</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Mia</td>
+<td>Hailey</td>
+<td>23</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>This result set has only five rows since Emma does not have any course attendances stored in the Attendance table (All Attendance table rows are returned)</li>
+</ul>
+<h2 id="union">UNION</h2>
+<ul>
+<li>While join is used to gather multiple <strong>columns</strong> from two or more tables into the result set, union is used to gather <strong>rows</strong> from multiple tables</li>
+<li>Below is a figure presenting how union works</li>
+</ul>
+<p><img alt="Union example" src="./SQL basics 3 - Databases [TTC2020]_files/union_example.png"></p>
+<ul>
+<li>The syntax for union statement is as follows</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">statement</span> <span class="hljs-number">1</span>
+    <span class="hljs-keyword">UNION</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">statement</span> <span class="hljs-number">2</span>
+</code></pre>
+<ul>
+<li><strong>Important</strong>: Take note of these when using union:<ul>
+<li>SELECT statements must have equal amount of columns in same order</li>
+<li>Corresponding columns from both tables must be the same data type</li>
+<li>ORDER BY will be present after the select statements and will affect the whole result set</li>
+</ul>
+</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">List all persons from company's project including employees and partners. Order the result set by age starting from oldest.</p>
+
+<img src="./SQL basics 3 - Databases [TTC2020]_files/union_example2.png" alt="Union example">
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">from</span> Employee
+    <span class="hljs-keyword">UNION</span>
+<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">from</span> Partner
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> age <span class="hljs-keyword">DESC</span>;
+</code></pre>
+
+
+- The following result set will be returned
+
+
+
+<pre><code class="language-sql hljs">+<span class="hljs-comment">----+-----------+------------+-----+------------+</span>
+| ID | firstname | surname    | age | position   |
++<span class="hljs-comment">----+-----------+------------+-----+------------+</span>
+| 3  | Mike      | Bellington | 50  | Manager    |
+| 2  | Lucy      | Smith      | 40  | Secretary  |
+| 3  | Sam       | Morton     | 24  | Developer  |
+| 1  | John      | Cason      | 23  | Team lead  |
+| 1  | Mia       | Hailey     | 23  | Researcher |
+| 2  | Emma      | Braxton    | 22  | Developer  |
+| 4  | Sandra    | Blythe     | 21  | Researcher |
++<span class="hljs-comment">----+-----------+------------+-----+------------+</span>
+</code></pre>
+
+
+</div>
+
+<h2 id="subqueries">Subqueries</h2>
+<ul>
+<li>Subqueries are always created inside the main query</li>
+<li>Subqueries can be nested</li>
+<li>Below is the syntax for using subqueries in MySQL</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">statement</span> <span class="hljs-number">1</span>      <span class="hljs-comment">-- Main query</span>
+    (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">statement</span> <span class="hljs-number">2</span>)       <span class="hljs-comment">-- First subquery</span>
+        (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">statement</span> <span class="hljs-number">3</span>)        <span class="hljs-comment">-- Second subquery</span>
+            ...
+</code></pre>
+<ul>
+<li>Queries are executed started from the most inner subquery [3 → 2 → 1]</li>
+<li>Result from inner query is passed to outer</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Select all employees who come from the same city as employee with ID of 255.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, age
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">WHERE</span> city =
+    (<span class="hljs-keyword">SELECT</span> city
+    <span class="hljs-keyword">FROM</span> Employee
+    <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">ID</span> = <span class="hljs-number">255</span>);
+</code></pre>
+
+
+</div>
+
+<h2 id="in-subqueries">IN subqueries</h2>
+<ul>
+<li>You can only return one row from regular subquery</li>
+<li>IN subquery allows the return of multiple rows</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Select firstname and surname of employees who work in a team having budget over 100000.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">WHERE</span> team_name <span class="hljs-keyword">IN</span>
+    (<span class="hljs-keyword">SELECT</span> team_name
+    <span class="hljs-keyword">FROM</span> Teams
+    <span class="hljs-keyword">WHERE</span> budget &gt; <span class="hljs-number">100000</span>);
+</code></pre>
+
+
+</div>
+
+<h2 id="all-and-any-subqueries">ALL and ANY subqueries</h2>
+<ul>
+<li>IN subquery cannot be used if comparison operators (&lt; or &gt;) are present in query</li>
+<li>Then you must use either ANY or ALL subquery</li>
+<li>Description:
+    <strong>ANY</strong>: Any value from subquery matches the condition
+    <strong>ALL</strong>: All values from subquery match the condition</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Select employees with salary greater than all salaries of employees from development team (TeamID = 3).</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, salary
+<span class="hljs-keyword">FROM</span> Employees
+<span class="hljs-keyword">WHERE</span> salary &gt; ALL
+    (<span class="hljs-keyword">SELECT</span> salary
+    <span class="hljs-keyword">FROM</span> Employee
+    <span class="hljs-keyword">WHERE</span> TeamID = <span class="hljs-number">3</span>);
+</code></pre>
+
+
+</div>
+
+<h2 id="exists-subquery">EXISTS subquery</h2>
+<ul>
+<li>EXISTS subquery can be used for testing whether particular rows exits in a table</li>
+<li>SELECT statement will always be used with * selector (all columns)</li>
+<li>Result will be one of the following<ul>
+<li><strong>True</strong>: Query returns at least one row that matches the condition</li>
+<li><strong>False</strong>: Query does not return any rows</li>
+</ul>
+</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Select teams having at least one player.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> teamID, team_name
+<span class="hljs-keyword">FROM</span> Team
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">EXISTS</span>
+    (<span class="hljs-keyword">SELECT</span> *
+    <span class="hljs-keyword">FROM</span> Player
+    <span class="hljs-keyword">WHERE</span> Team.teamID = Player.teamID);
+</code></pre>
+
+
+<p>In this query team will be selected if it's teamID is present at least once in Player table.</p>
+
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/" class="btn btn-neutral float-right" title="SQL basics 4">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/" class="btn btn-neutral" title="SQL basics 2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/" style="color: #fcfcfc;">« Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/" style="color: #fcfcfc">Next »</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="./SQL basics 3 - Databases [TTC2020]_files/theme.js.download" defer=""></script>
+      <script src="./SQL basics 3 - Databases [TTC2020]_files/main.js.download" defer=""></script>
+
+
+
+</body></html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!-- saved from url=(0083)https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/07_ex_nosql/ -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Antti Häkkinen">
+  <link rel="shortcut icon" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/img/favicon.ico">
+  <title>Exercise set 7 (NoSQL) - Databases [TTC2020]</title>
+  <link href="./Exercise set 7 (NoSQL) - Databases [TTC2020]_files/css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="./Exercise set 7 (NoSQL) - Databases [TTC2020]_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./Exercise set 7 (NoSQL) - Databases [TTC2020]_files/theme_extra.css" type="text/css">
+  <link rel="stylesheet" href="./Exercise set 7 (NoSQL) - Databases [TTC2020]_files/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Exercise set 7 (NoSQL)";
+    var mkdocs_page_input_path = "exercises/07_ex_nosql.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="./Exercise set 7 (NoSQL) - Databases [TTC2020]_files/jquery-2.1.1.min.js.download" defer=""></script>
+  <script src="./Exercise set 7 (NoSQL) - Databases [TTC2020]_files/modernizr-2.8.3.min.js.download" defer=""></script>
+  <script src="./Exercise set 7 (NoSQL) - Databases [TTC2020]_files/highlight.min.js.download"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document" data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed="">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/" class="icon icon-home"> Databases [TTC2020]</a>
+        <div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here">
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Course overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tools</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/environment_preparation_guide/">Environment preparation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/db_query_guide/">Database query guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/data_modeling_guide/">Data modeling guide</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Materials</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/01_introduction_to_databases/">Introduction to databases</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/">Database design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/">SQL basics 1</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/">SQL basics 2</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/">SQL basics 3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/">SQL basics 4</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/">SQL basics 5</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/">NoSQL</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Exercises</span>
+    <ul class="subnav" style="display: list-item;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/01_ex_database_design/">Exercise set 1 (Database design)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/02_ex_sql_basics_01/">Exercise set 2 (SQL basics 1)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/03_ex_sql_basics_02/">Exercise set 3 (SQL basics 2)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/04_ex_sql_basics_03/">Exercise set 4 (SQL basics 3)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/05_ex_sql_basics_04/">Exercise set 5 (SQL basics 4)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/06_ex_sql_basics_05/">Exercise set 6 (SQL basics 5)</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/07_ex_nosql/">Exercise set 7 (NoSQL)</a>
+    <ul class="subnav" style="display: block;">
+            
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/07_ex_nosql/#exercise-set-7-nosql">Exercise set 7 - NoSQL</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Databases [TTC2020]</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Docs</a> »</li>
+    
+      
+        
+          <li>Exercises »</li>
+        
+      
+    
+    <li>Exercise set 7 (NoSQL)</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="exercise-set-7-nosql">Exercise set 7 - NoSQL</h1>
+<ul>
+<li>In this exercise you will create a MongoDB document collections including data similar to Ocelot training database used in SQL exercises</li>
+<li>After the creation of document collections data will be inserted</li>
+<li>Finally couple of queries will be formed for data retrieval</li>
+</ul>
+<p><img alt="NoSQL exercise model" src="./Exercise set 7 (NoSQL) - Databases [TTC2020]_files/nosql-exercise-model.png"></p>
+<ol>
+    <li>Firstly, create two document collections for the data. Use SQL table structure presented above as a reference.</li>
+    <li>Add at least five rows of data to both document collections.</li>
+    <li>Create the following queries:
+        <ol class="alphabetical-list">
+            <li>Select all departments.</li>
+            <li>Select employees whose rate value is greater than 9. Order results by rate value so that smallest value is presented first.</li>
+            <li>Select employees whose rate value is between 8-12. Order results by rate value so that greatest value is presented first.</li>
+            <li>Select employees whose department is not A, B or C.</li>
+            <li>Update rate value for all employees working in department B.</li>
+            <li>Change the manager for department C so that the new manager will be David Smith.</li>
+            <li>Remove employees whose department is C.</li>
+        </ol>
+    </li>
+</ol>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/06_ex_sql_basics_05/" class="btn btn-neutral" title="Exercise set 6 (SQL basics 5)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/06_ex_sql_basics_05/" style="color: #fcfcfc;">« Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="./Exercise set 7 (NoSQL) - Databases [TTC2020]_files/theme.js.download" defer=""></script>
+      <script src="./Exercise set 7 (NoSQL) - Databases [TTC2020]_files/main.js.download" defer=""></script>
+
+
+
+</body></html>

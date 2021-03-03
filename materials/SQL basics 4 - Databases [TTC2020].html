@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/ -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Antti Häkkinen">
+  <link rel="shortcut icon" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/img/favicon.ico">
+  <title>SQL basics 4 - Databases [TTC2020]</title>
+  <link href="./SQL basics 4 - Databases [TTC2020]_files/css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="./SQL basics 4 - Databases [TTC2020]_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./SQL basics 4 - Databases [TTC2020]_files/theme_extra.css" type="text/css">
+  <link rel="stylesheet" href="./SQL basics 4 - Databases [TTC2020]_files/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "SQL basics 4";
+    var mkdocs_page_input_path = "materials/06_sql_basics_04.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="./SQL basics 4 - Databases [TTC2020]_files/jquery-2.1.1.min.js.download" defer=""></script>
+  <script src="./SQL basics 4 - Databases [TTC2020]_files/modernizr-2.8.3.min.js.download" defer=""></script>
+  <script src="./SQL basics 4 - Databases [TTC2020]_files/highlight.min.js.download"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document" data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed="">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/" class="icon icon-home"> Databases [TTC2020]</a>
+        <div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here">
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Course overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tools</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/environment_preparation_guide/">Environment preparation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/db_query_guide/">Database query guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/data_modeling_guide/">Data modeling guide</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Materials</span>
+    <ul class="subnav" style="display: list-item;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/01_introduction_to_databases/">Introduction to databases</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/">Database design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/">SQL basics 1</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/">SQL basics 2</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/">SQL basics 3</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/">SQL basics 4</a>
+    <ul class="subnav" style="display: block;">
+            
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/#sql-basics-4">SQL basics 4</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/#creating-a-database">Creating a database</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/#creating-a-table">Creating a table</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/#referential-integrity">Referential integrity</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/#referential-constraints">Referential constraints</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/#automatically-generated-unique-field-numbers-auto_increment">Automatically generated unique field numbers (AUTO_INCREMENT)</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/#edit-table-properties-alter-table">Edit table properties (ALTER TABLE)</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/#table-description-table">Table description (TABLE)</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/#input-and-update-validation">Input and update validation</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/">SQL basics 5</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/">NoSQL</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Exercises</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/01_ex_database_design/">Exercise set 1 (Database design)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/02_ex_sql_basics_01/">Exercise set 2 (SQL basics 1)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/03_ex_sql_basics_02/">Exercise set 3 (SQL basics 2)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/04_ex_sql_basics_03/">Exercise set 4 (SQL basics 3)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/05_ex_sql_basics_04/">Exercise set 5 (SQL basics 4)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/06_ex_sql_basics_05/">Exercise set 6 (SQL basics 5)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/07_ex_nosql/">Exercise set 7 (NoSQL)</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Databases [TTC2020]</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Docs</a> »</li>
+    
+      
+        
+          <li>Materials »</li>
+        
+      
+    
+    <li>SQL basics 4</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="sql-basics-4">SQL basics 4</h1>
+<h2 id="creating-a-database">Creating a database</h2>
+<ul>
+<li>Database can be created with command <strong>CREATE DATABASE</strong></li>
+<li>Database name will be given after the command (for example <em>CREATE DATABASE testdb</em>)</li>
+<li>User must have adequate rights for creating the database</li>
+<li>Before user can execute any queries, database must be selected with <strong>USE</strong> command (for example <em>USE testdb</em>)</li>
+</ul>
+<h2 id="creating-a-table">Creating a table</h2>
+<ul>
+<li>Like with creating a database, table creation also requires adequate rights</li>
+<li>After selecting the database with <strong>USE</strong> command, table can be created with the following syntax:</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> table_name(
+<span class="hljs-keyword">ID</span> <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+Col1 <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>),
+Col2 <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">35</span>),
+Col3 <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">40</span>),
+PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-keyword">ID</span>));
+</code></pre>
+<ul>
+<li>Table name will be given after <strong>CREATE TABLE</strong> command</li>
+<li>Table structure is presented inside brackets</li>
+<li>Each column requires name and data type</li>
+<li>
+<p>In addition, constraints can be defined for each column:</p>
+<ul>
+<li><strong>NOT NULL</strong>: Null value not allowed</li>
+<li><strong>DEFAULT</strong>: If no value is provided during INSERT statement, default value will be used</li>
+<li><strong>UNIQUE</strong>: No duplicate values are allowed in column</li>
+<li><strong>PRIMARY KEY</strong>: Define the primary key column(s) for the table</li>
+<li><strong>FOREIGN KEY</strong>: Define foreign key column(s) for the table</li>
+</ul>
+</li>
+<li>
+<p>Supported data types for columns can be seen for example in <a href="https://www.w3schools.com/sql/sql_datatypes.asp">here</a></p>
+</li>
+</ul>
+<h2 id="referential-integrity">Referential integrity</h2>
+<ul>
+<li>Connections between tables using foreign keys are essential for keeping data integrity in appropriate level</li>
+<li>Below is an example where the difference between connected and non-connected tables is shown</li>
+</ul>
+<p><img alt="Table connections" src="./SQL basics 4 - Databases [TTC2020]_files/table_connections.png"></p>
+<ul>
+<li>
+<p>As can be seen from the example above:</p>
+<ul>
+<li>In case where tables are not connected, data integrity cannot be ensured</li>
+<li>ID 4 was stored in the Manager column even though it was not present in the Person table</li>
+<li>In case of connected table, ID 4 cannot be used for the row since it is not present in Person table</li>
+<li>This means that the insertion of third row or update for the existing Manager value cannot be completed</li>
+</ul>
+</li>
+<li>
+<p>The create statements for these two tables would be like this:</p>
+</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Person(
+PersonID <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+Firstname <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">25</span>),
+Surname <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">35</span>),
+Age <span class="hljs-built_in">INT</span>,
+PRIMARY <span class="hljs-keyword">KEY</span> (PersonID));
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">Project</span>(
+ProjectID <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+<span class="hljs-keyword">Name</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">30</span>),
+Manager <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+Budget <span class="hljs-built_in">INT</span>,
+PRIMARY <span class="hljs-keyword">KEY</span> (ProjectID),
+FOREIGN <span class="hljs-keyword">KEY</span> (Manager)
+<span class="hljs-keyword">REFERENCES</span> Person (PersonID));
+</code></pre>
+<h2 id="referential-constraints">Referential constraints</h2>
+<ul>
+<li>As stated before, connections between tables help to ensure that data integrity is in place</li>
+<li>However, the management of the data can be frustrating without referential constraints</li>
+<li>Basically referential constraint means that we can configure how the database engine will react to data changes automatically</li>
+<li>This will be presented in the example below</li>
+</ul>
+<p><img alt="Table connections 2" src="./SQL basics 4 - Databases [TTC2020]_files/table_connections_2.png"></p>
+<ul>
+<li>There are two options for reacting data changes: <ul>
+<li><strong>ON UPDATE</strong>: What to do when table data is updated</li>
+<li><strong>ON DELETE</strong>: What to do when table data is deleted</li>
+</ul>
+</li>
+<li>Both of these options have four possible clauses to choose from:<ul>
+<li><strong>RESTRICT</strong>: Row will not be deleted or updated if there are records in the child table</li>
+<li><strong>NO ACTION</strong>: Equivalent to RESTRICT</li>
+<li><strong>CASCADE</strong>: Rows in child table will be automatically updated or deleted when corresponding values are affected in parent table</li>
+<li><strong>SET NULL</strong>: Row in the child table will be set null when corresponding value in the parent table is updated or deleted</li>
+</ul>
+</li>
+</ul>
+<h2 id="automatically-generated-unique-field-numbers-auto_increment">Automatically generated unique field numbers (AUTO_INCREMENT)</h2>
+<ul>
+<li><strong>AUTO_INCREMENT</strong> can be set for any field in the table</li>
+<li>Basically it creates a unique integer for the field</li>
+<li>This is especially useful to use with numberic ID fields used as primary key fields</li>
+<li>By default AUTO_INCREMENT starts from number 1 and will increase by 1 for each new record</li>
+<li>Starting value can be customized like in the example below</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">Test</span>(
+<span class="hljs-keyword">ID</span> <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> AUTO_INCREMENT,
+col1 <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>),
+col2 <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">30</span>),
+PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-keyword">ID</span>));
+</code></pre>
+<ul>
+<li><strong>Important:</strong> AUTO_INCREMENT starting value can also be set after the creation of the table using ALTER TABLE statement!</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">Test</span> AUTO_INCREMENT=<span class="hljs-number">10</span>;
+</code></pre>
+<ul>
+<li>This setting will change the starting value of AUTO_INCREMENT in ID field to be 10.</li>
+<li>Now the first line to be inserted would receive an ID value of 10, next will have 11 and so on.</li>
+</ul>
+<h2 id="edit-table-properties-alter-table">Edit table properties (ALTER TABLE)</h2>
+<ul>
+<li>Table properties can be edited after <strong>CREATE TABLE</strong> statement by using <strong>ALTER TABLE</strong></li>
+<li>
+<p>There are many options available for ALTER TABLE statement, but we'll cover the most essential ones here:</p>
+<ul>
+<li><strong>ADD COLUMN</strong>: Add new column to the table</li>
+<li><strong>DROP COLUMN</strong>: Drop an existing column from table</li>
+<li><strong>MODIFY COLUMN</strong>: Edit column properties (name, data type)</li>
+<li><strong>RENAME TABLE</strong>: Change table name</li>
+<li><strong>ADD CONSTRAINT</strong>: Add constraint for the table</li>
+</ul>
+</li>
+<li>
+<p>It is possible to make multiple changes with one ALTER TABLE statement like in the example below</p>
+</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Worker(
+WID <span class="hljs-built_in">int</span>,
+<span class="hljs-keyword">Name</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">40</span>),
+<span class="hljs-keyword">Position</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">25</span>),
+Email <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">60</span>));
+</code></pre>
+<p><img alt="Worker table example" src="./SQL basics 4 - Databases [TTC2020]_files/worker_table_example.png"></p>
+<ul>
+<li>Now let's make the following changes for the <em>Worker</em> table:<ul>
+<li>Set WID column as a primary key</li>
+<li>Add new column Phone with data type of CHAR(10)</li>
+<li>Add new column Priority with data type of VARCHAR(10) with default value of <strong>normal</strong> (this value will be set for the row if no priority value is given during data insertion)</li>
+<li>Change the data type for the Name column (VARCHAR(40) → VARCHAR(50))</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Worker
+<span class="hljs-keyword">ADD</span> PRIMARY <span class="hljs-keyword">KEY</span> (WID),
+<span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> Phone <span class="hljs-built_in">CHAR</span>(<span class="hljs-number">10</span>),
+<span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> <span class="hljs-keyword">Priority</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">'normal'</span>,
+<span class="hljs-keyword">MODIFY</span> <span class="hljs-keyword">COLUMN</span> <span class="hljs-keyword">Name</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">50</span>);
+</code></pre>
+<p><img alt="Worker table example 2" src="./SQL basics 4 - Databases [TTC2020]_files/worker_table_example_2.png"></p>
+<h2 id="table-description-table">Table description (TABLE)</h2>
+<ul>
+<li>Existing table properties can be listed with <strong>DESCRIBE</strong> followed by table name</li>
+<li>Below is an example where previously created Worker table properties are listed</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">DESCRIBE</span> Worker;
+</code></pre>
+<ul>
+<li>This will result the following output:</li>
+</ul>
+<pre><code class="language-sql hljs">+<span class="hljs-comment">------------+-------------+------+-----+---------+-------+</span>
+|  Field     |    Type     | Null | Key | Default | Extra |
++<span class="hljs-comment">------------+-------------+------+-----+---------+-------+</span>
+| WID        | int(11)     | NO   | PRI | Null    |       |
+| Name       | varchar(50) | YES  |     | Null    |       |
+| Department | varchar(25) | YES  |     | Null    |       |
+| Email      | varchar(60) | YES  |     | Null    |       |
+| Phone      | char(10)    | YES  |     | Null    |       |
+| Priority   | varchar(10) | YES  |     | Null    |       |
+</code></pre>
+<h2 id="input-and-update-validation">Input and update validation</h2>
+<ul>
+<li>Input values and updates targeted to table can be checked before allowing the execution of query</li>
+<li>Values must meet the set conditions in order for input or update query to execute</li>
+<li>Below is an example where values for <em>Priority</em> field are checked on INSERT statement for <em>Worker</em> table</li>
+</ul>
+<pre><code class="language-sql hljs">DELIMITER $$
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> check_priority <span class="hljs-keyword">BEFORE</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">ON</span> Worker
+<span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span>
+    <span class="hljs-keyword">BEGIN</span>
+        <span class="hljs-keyword">IF</span> NEW.Priority &lt;&gt; <span class="hljs-string">'high'</span> <span class="hljs-keyword">AND</span> NEW.Priority &lt;&gt; <span class="hljs-string">'low'</span>
+            <span class="hljs-keyword">THEN</span> <span class="hljs-keyword">SET</span> NEW.Priority = <span class="hljs-string">'unknown'</span>;
+        <span class="hljs-keyword">END</span> <span class="hljs-keyword">if</span>;
+    <span class="hljs-keyword">END</span> $$
+</code></pre>
+<ul>
+<li>As can be seen from the example above, only Priority field values <strong>high</strong> and <strong>low</strong> are allowed</li>
+<li>Like shown in earlier examples, if no value is provided during the data insertion on Worker table, value <strong>normal</strong> will be used</li>
+<li>However, now field value will be set to <strong>unknown</strong> if value to be inserted is something else than <strong>high</strong> or <strong>low</strong></li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/" class="btn btn-neutral float-right" title="SQL basics 5">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/" class="btn btn-neutral" title="SQL basics 3"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/" style="color: #fcfcfc;">« Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/" style="color: #fcfcfc">Next »</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="./SQL basics 4 - Databases [TTC2020]_files/theme.js.download" defer=""></script>
+      <script src="./SQL basics 4 - Databases [TTC2020]_files/main.js.download" defer=""></script>
+
+
+
+</body></html>

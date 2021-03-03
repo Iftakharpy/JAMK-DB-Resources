@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/ -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Antti Häkkinen">
+  <link rel="shortcut icon" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/img/favicon.ico">
+  <title>SQL basics 5 - Databases [TTC2020]</title>
+  <link href="./SQL basics 5 - Databases [TTC2020]_files/css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="./SQL basics 5 - Databases [TTC2020]_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./SQL basics 5 - Databases [TTC2020]_files/theme_extra.css" type="text/css">
+  <link rel="stylesheet" href="./SQL basics 5 - Databases [TTC2020]_files/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "SQL basics 5";
+    var mkdocs_page_input_path = "materials/07_sql_basics_05.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="./SQL basics 5 - Databases [TTC2020]_files/jquery-2.1.1.min.js.download" defer=""></script>
+  <script src="./SQL basics 5 - Databases [TTC2020]_files/modernizr-2.8.3.min.js.download" defer=""></script>
+  <script src="./SQL basics 5 - Databases [TTC2020]_files/highlight.min.js.download"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document" data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed="">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/" class="icon icon-home"> Databases [TTC2020]</a>
+        <div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here">
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Course overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tools</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/environment_preparation_guide/">Environment preparation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/db_query_guide/">Database query guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/data_modeling_guide/">Data modeling guide</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Materials</span>
+    <ul class="subnav" style="display: list-item;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/01_introduction_to_databases/">Introduction to databases</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/">Database design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/">SQL basics 1</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/">SQL basics 2</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/">SQL basics 3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/">SQL basics 4</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/">SQL basics 5</a>
+    <ul class="subnav" style="display: block;">
+            
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/#sql-basics-5">SQL basics 5</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/#adding-new-rows-to-table-insert">Adding new rows to table (INSERT)</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/#copying-data-from-one-table-to-another">Copying data from one table to another</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/#update-table-data-update">Update table data (UPDATE)</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/#delete-table-data-delete">Delete table data (DELETE)</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/#transactions">Transactions</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/#views">Views</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/">NoSQL</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Exercises</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/01_ex_database_design/">Exercise set 1 (Database design)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/02_ex_sql_basics_01/">Exercise set 2 (SQL basics 1)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/03_ex_sql_basics_02/">Exercise set 3 (SQL basics 2)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/04_ex_sql_basics_03/">Exercise set 4 (SQL basics 3)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/05_ex_sql_basics_04/">Exercise set 5 (SQL basics 4)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/06_ex_sql_basics_05/">Exercise set 6 (SQL basics 5)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/07_ex_nosql/">Exercise set 7 (NoSQL)</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Databases [TTC2020]</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Docs</a> »</li>
+    
+      
+        
+          <li>Materials »</li>
+        
+      
+    
+    <li>SQL basics 5</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="sql-basics-5">SQL basics 5</h1>
+<h2 id="adding-new-rows-to-table-insert">Adding new rows to table (INSERT)</h2>
+<ul>
+<li><strong>INSERT</strong> statement is used for adding new rows to the table</li>
+<li>INSERT has two possible syntaxes:</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">Table</span> <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">1</span>,<span class="hljs-string">'val1'</span>,<span class="hljs-string">'val2'</span>,<span class="hljs-string">'val3'</span>);
+</code></pre>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">Table</span> (col2,col3,col4) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'val1'</span>,<span class="hljs-string">'val2'</span>,<span class="hljs-string">'val3'</span>);
+</code></pre>
+<ul>
+<li>First example presented above does not include column listing in INSERT statement and thus requires the insertion for <strong>all</strong> columns</li>
+<li>In second example columns are defined before <strong>VALUES</strong> clause and values given inside brackets after <strong>VALUES</strong> clause will be inserted corresponding order</li>
+<li>Second syntax is useful especially in cases where table has automatic fields like AUTO_INCREMENT and TIMESTAMP (values will not be inserted manually for these fields!)</li>
+<li>Multiple rows can be added with one INSERT statement by separating bracket pairs with comma (,)</li>
+<li>Below is an example where three rows are inserted into the Worker table</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> Worker <span class="hljs-keyword">VALUES</span> 
+(<span class="hljs-number">1</span>,<span class="hljs-string">'James'</span>,<span class="hljs-string">'Sales'</span>,<span class="hljs-string">'james@company.com'</span>,<span class="hljs-string">'5124533112'</span>, <span class="hljs-number">2900</span>, <span class="hljs-number">2</span>),
+(<span class="hljs-number">2</span>,<span class="hljs-string">'Cheryl'</span>,<span class="hljs-string">'Management'</span>,<span class="hljs-string">'cheryl@company.com'</span>,<span class="hljs-string">'5125244212'</span>, <span class="hljs-number">2850</span>, <span class="hljs-number">3</span>),
+(<span class="hljs-number">3</span>,<span class="hljs-string">'Jessie'</span>,<span class="hljs-string">'Research'</span>,<span class="hljs-string">'jessie@company.com'</span>,<span class="hljs-string">'5125264231'</span>, <span class="hljs-number">3200</span>, <span class="hljs-number">2</span>);
+</code></pre>
+<h2 id="copying-data-from-one-table-to-another">Copying data from one table to another</h2>
+<ul>
+<li>Data can be copied from table to another by combining INSERT and SELECT statements</li>
+<li><strong>Important</strong>: Table structures must be similar (same amount of columns with similar data types in similar order)</li>
+<li>Below is an example where data is copied between two tables</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Copy data of employee with ID of 50 to MANAGER table.</p>
+
+<img src="./SQL basics 5 - Databases [TTC2020]_files/copy-data-example.png" alt="data copy example">
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Manager (firstname, surname, email, phone)
+<span class="hljs-keyword">SELECT</span> firstname, surname, email, phone
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">WHERE</span> EmployeeID = <span class="hljs-number">20</span>;
+</code></pre>
+
+
+</div>
+
+<h2 id="update-table-data-update">Update table data (UPDATE)</h2>
+<ul>
+<li>Existing data in tables can be edited with <strong>UPDATE</strong> statement</li>
+<li>Example for UPDATE statement syntax is shown below</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">UPDATE</span> Table_name
+<span class="hljs-keyword">SET</span> field_name = new_value
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = id_value;
+</code></pre>
+<ul>
+<li>UPDATE requires row selection (WHERE) by default</li>
+<li>This is important especially in production environment where user can accidentally affect wrong rows</li>
+<li>In row selection, these rules should be taken into account:<ul>
+<li>For one row, use unique row identifier</li>
+<li>For several rows, try to find a common factor for all desired rows </li>
+</ul>
+</li>
+<li>Below are couple of examples where company worker data is edited</li>
+</ul>
+<div class="example-block">
+
+<h4>Example 1</h4>
+
+<p class="example-description">Change James's (ID = 1) priority value from 2 to 3.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">UPDATE</span> Worker
+<span class="hljs-keyword">SET</span> <span class="hljs-keyword">Priority</span> = <span class="hljs-number">3</span>
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">ID</span> = <span class="hljs-number">1</span>;
+</code></pre>
+
+
+</div>
+
+<div class="example-block">
+
+<h4>Example 2</h4>
+
+<p class="example-description">Increase salary for all workers in Management for 10 percent.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">UPDATE</span> Worker
+<span class="hljs-keyword">SET</span> salary = salary * <span class="hljs-number">1.1</span>
+<span class="hljs-keyword">WHERE</span> department = <span class="hljs-string">'Management'</span>;
+</code></pre>
+
+
+</div>
+
+<h2 id="delete-table-data-delete">Delete table data (DELETE)</h2>
+<ul>
+<li><strong>DELETE</strong> statement is used for deleting data from table</li>
+<li>Similar to <strong>UPDATE</strong> statement, row selection (WHERE) is required in order to avoid accidental data removal</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Remove employee with ID of 2 from Worker table.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Worker
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">ID</span> = <span class="hljs-number">2</span>;
+</code></pre>
+
+
+</div>
+
+<h2 id="transactions">Transactions</h2>
+<ul>
+<li>Transactions allow user to execute multiple SQL operations on one statement</li>
+<li>If one of the queries included in transaction fails, rollback operation is executed in order to restore the database to its original state</li>
+<li>
+<p>Transaction properties can be described with <strong>ACID</strong>:</p>
+<ul>
+<li><strong>A</strong>tomicity: Each SQL query included in transaction must work or the whole operation will be restricted</li>
+<li><strong>C</strong>onsistency: Database structure and content is modified according to successful transaction</li>
+<li><strong>I</strong>solation: Each SQL query included in transaction is executed individually</li>
+<li><strong>D</strong>urability: Modifications made with successful transaction will be permanent, even after system malfunction</li>
+</ul>
+</li>
+<li>
+<p>Transaction always starts with <strong>BEGIN</strong> and ends with <strong>COMMIT</strong> statement</p>
+</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Below is an example where three SQL queries are included in transaction.</p>
+<ul>
+    <li>Insert new worker to Worker table</li>
+    <li>Set salary for existing worker</li>
+    <li>Change Phone column data type (CHAR(10) → VARCHAR(10))</li>
+</ul>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">BEGIN</span>;
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Worker <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">4</span>,<span class="hljs-string">'Jones'</span>,<span class="hljs-string">'Research'</span>,<span class="hljs-string">'jones@company.com'</span>,<span class="hljs-string">'5125331231'</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2900</span>);
+<span class="hljs-keyword">UPDATE</span> Worker <span class="hljs-keyword">SET</span> Salary = <span class="hljs-number">3100</span> <span class="hljs-keyword">where</span> WID = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Worker <span class="hljs-keyword">MODIFY</span> <span class="hljs-keyword">COLUMN</span> Phone <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>);
+<span class="hljs-keyword">COMMIT</span>;
+</code></pre>
+
+
+</div>
+
+<ul>
+<li><strong>Important</strong>: If COMMIT is left out from the end, changes are only present during the current session!</li>
+<li><strong>ROLLBACK</strong> command can be used to restore database to its original state</li>
+<li><strong>Important</strong>: This command does not work if COMMIT has been executed!</li>
+<li>By default AUTOCOMMIT setting is enabled meaning that COMMIT is executed after each SQL query (1 = Enabled, 0 = Disabled)</li>
+<li>To check AUTOCOMMIT setting value, use the following query:</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> @@autocommit;
+</code></pre>
+<ul>
+<li>AUTOCOMMIT can be disabled with the following query:</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SET</span> @@autocommit = <span class="hljs-number">0</span>;
+</code></pre>
+<h2 id="views">Views</h2>
+<ul>
+<li>View in SQL can be described as a variable which stores the query statement</li>
+<li>By using the view, user will always receive up to date data from the database</li>
+</ul>
+<p><img alt="Views" src="./SQL basics 5 - Databases [TTC2020]_files/views.png"></p>
+<ul>
+<li>The most useful cases for the view are complicated and long SQL queries</li>
+<li>View is created with <strong>CREATE VIEW</strong> statement</li>
+<li>Basically the syntax combines alias (AS) and data selection (SELECT)</li>
+<li>When querying the created view, ORDER BY can be used with the view</li>
+<li>Below are couple of examples for using a view</li>
+</ul>
+<div class="example-block">
+
+<h4>Example 1</h4>
+
+<p class="example-description">Create a view for the following query: Select all workers whose salary is over 3000 and who work on research.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> <span class="hljs-keyword">work</span> <span class="hljs-keyword">AS</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">Name</span>, Email, Phone, Salary
+<span class="hljs-keyword">FROM</span> Worker
+<span class="hljs-keyword">WHERE</span> Salary &gt; <span class="hljs-number">3000</span> <span class="hljs-keyword">and</span> Department = <span class="hljs-string">'Research'</span>;
+</code></pre>
+
+
+<p>Now this query can be used with the following SELECT statement:</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">work</span>;
+</code></pre>
+
+
+</div>
+
+<div class="example-block">
+
+<h4>Example 2</h4>
+
+<p class="example-description">Create a view for the following query: Select project ID, name, priority, total hours and the difference of planned and actual hours grouped for each project.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> project_situation <span class="hljs-keyword">AS</span>
+<span class="hljs-keyword">SELECT</span> PR.projectID, PR.name, PR.priority, <span class="hljs-keyword">SUM</span>(PW.hours), <span class="hljs-keyword">SUM</span>(PH.hours_planned) - <span class="hljs-keyword">SUM</span>(PH.hours)
+<span class="hljs-keyword">FROM</span> <span class="hljs-keyword">Project</span> PR <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> Workers PW
+<span class="hljs-keyword">ON</span> PR.projectID = PW.projectID
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> PR.projectID, PR.name, PR.priority;
+</code></pre>
+
+
+<p>Now this query can be used with the following SELECT statement:</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> *
+<span class="hljs-keyword">FROM</span> project_situation
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> projectID;
+</code></pre>
+
+
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/" class="btn btn-neutral float-right" title="NoSQL">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/" class="btn btn-neutral" title="SQL basics 4"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/" style="color: #fcfcfc;">« Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/" style="color: #fcfcfc">Next »</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="./SQL basics 5 - Databases [TTC2020]_files/theme.js.download" defer=""></script>
+      <script src="./SQL basics 5 - Databases [TTC2020]_files/main.js.download" defer=""></script>
+
+
+
+</body></html>

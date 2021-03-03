@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/ -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Antti Häkkinen">
+  <link rel="shortcut icon" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/img/favicon.ico">
+  <title>SQL basics 1 - Databases [TTC2020]</title>
+  <link href="./SQL basics 1 - Databases [TTC2020]_files/css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="./SQL basics 1 - Databases [TTC2020]_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./SQL basics 1 - Databases [TTC2020]_files/theme_extra.css" type="text/css">
+  <link rel="stylesheet" href="./SQL basics 1 - Databases [TTC2020]_files/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "SQL basics 1";
+    var mkdocs_page_input_path = "materials/03_sql_basics_01.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="./SQL basics 1 - Databases [TTC2020]_files/jquery-2.1.1.min.js.download" defer=""></script>
+  <script src="./SQL basics 1 - Databases [TTC2020]_files/modernizr-2.8.3.min.js.download" defer=""></script>
+  <script src="./SQL basics 1 - Databases [TTC2020]_files/highlight.min.js.download"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document" data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed="">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/" class="icon icon-home"> Databases [TTC2020]</a>
+        <div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here">
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Course overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tools</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/environment_preparation_guide/">Environment preparation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/db_query_guide/">Database query guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/tools/data_modeling_guide/">Data modeling guide</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Materials</span>
+    <ul class="subnav" style="display: list-item;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/01_introduction_to_databases/">Introduction to databases</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/">Database design</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/">SQL basics 1</a>
+    <ul class="subnav" style="display: block;">
+            
+    <li class="toctree-l3"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/#sql-basics-01">SQL basics 01</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/#what-is-sql">What is SQL?</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/#sql-queries">SQL queries</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/#command-types">Command types</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/#sql-query-syntax">SQL query syntax</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/#comments">Comments</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/#retrieving-information-from-database-select">Retrieving information from database (SELECT)</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/#column-alias-as">Column alias (AS)</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/#order-the-result-set-order-by">Order the result set (ORDER BY)</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/#limit-the-result-set-limit">Limit the result set (LIMIT)</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/#row-selection-where">Row selection (WHERE)</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/#string-patterns-like">String patterns (LIKE)</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/#between-and-in-operators">BETWEEN and IN operators</a></li>
+        
+            <li><a class="toctree-l4" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/03_sql_basics_01/#null-value">Null value</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/">SQL basics 2</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/05_sql_basics_03/">SQL basics 3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/06_sql_basics_04/">SQL basics 4</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/07_sql_basics_05/">SQL basics 5</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/08_nosql/">NoSQL</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Exercises</span>
+    <ul class="subnav" style="display: none;">
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/01_ex_database_design/">Exercise set 1 (Database design)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/02_ex_sql_basics_01/">Exercise set 2 (SQL basics 1)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/03_ex_sql_basics_02/">Exercise set 3 (SQL basics 2)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/04_ex_sql_basics_03/">Exercise set 4 (SQL basics 3)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/05_ex_sql_basics_04/">Exercise set 5 (SQL basics 4)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/06_ex_sql_basics_05/">Exercise set 6 (SQL basics 5)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/exercises/07_ex_nosql/">Exercise set 7 (NoSQL)</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Databases [TTC2020]</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/">Docs</a> »</li>
+    
+      
+        
+          <li>Materials »</li>
+        
+      
+    
+    <li>SQL basics 1</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="sql-basics-01">SQL basics 01</h1>
+<h2 id="what-is-sql">What is SQL?</h2>
+<ul>
+<li>SQL (<em>Structured Query Language</em>) is standardized query language developed by IBM</li>
+<li>First version of SQL was introduced in 1974</li>
+<li>SQL makes it possible to manage and interact with a database</li>
+<li>With SQL you can<ul>
+<li>Perform queries against the selected database<ul>
+<li>Retrive data from database (<strong>SELECT</strong>)</li>
+<li>Adding new data to database (<strong>INSERT</strong>)</li>
+<li>Removing data from database (<strong>DELETE</strong>)</li>
+<li>Manipulate stored data in database (<strong>UPDATE</strong>)</li>
+</ul>
+</li>
+<li>Create a database with tables and connections</li>
+<li>Set permissions for all of the above</li>
+<li>Create views that support database queries</li>
+</ul>
+</li>
+</ul>
+<h2 id="sql-queries">SQL queries</h2>
+<ul>
+<li>Database queries all go through DBMS (<em>Database management system</em>)</li>
+<li>Below is an example where SELECT query is executed against the database in order to retrieve lines from database<ol>
+<li>SQL query comes from user or application</li>
+<li>DBMS optimizes the query and forwards the query to database</li>
+<li>Query results are called result set and is returned to DBMS</li>
+<li>Result set includes all necessary lines</li>
+<li>Result set will be returned to user's DBMS client application or to other application as variable for further processing</li>
+</ol>
+</li>
+</ul>
+<p><img alt="DB query example" src="./SQL basics 1 - Databases [TTC2020]_files/db_query_example.png"></p>
+<h2 id="command-types">Command types</h2>
+<ul>
+<li>Below is a list of SQL language command types</li>
+<li>In this course we are mainly focusing on DDL and DML queries<ul>
+<li><strong>DDL (Data Definition Language)</strong><ul>
+<li>Database structure definition</li>
+<li>CREATE, ALTER, DROP ...</li>
+</ul>
+</li>
+<li><strong>DML (Data Manipulation Language)</strong><ul>
+<li>Data manipulation commands</li>
+<li>SELECT, INSERT, UPDATE, DELETE ...</li>
+</ul>
+</li>
+<li><strong>DCL (Data Control Language)</strong><ul>
+<li>Commands for controlling the database (for example user permissions)</li>
+<li>GRANT, REVOKE ...</li>
+</ul>
+</li>
+<li><strong>TCL (Transaction Control Language)</strong><ul>
+<li>Managing DML commands with transactions</li>
+<li>COMMIT, ROLLBACK ...</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="sql-query-syntax">SQL query syntax</h2>
+<ul>
+<li>SQL queries can be written in either one or multiple lines</li>
+<li>Below is an example where these two approaches are presented</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> Employee <span class="hljs-keyword">WHERE</span> surname = <span class="hljs-string">'Johnson'</span>;
+</code></pre>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> *
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">WHERE</span> surname = <span class="hljs-string">'Johnson'</span>;
+</code></pre>
+<ul>
+<li>This syntax can be broken down into following clauses:<ul>
+<li>SELECT → choose which columns will be shown in the result set</li>
+<li>FROM → from what table(s) data will be retrieved</li>
+<li>WHERE → choose which lines will be shown in the result set</li>
+</ul>
+</li>
+<li><strong>Important:</strong> Select statement requires at least select and from clauses to be included!</li>
+</ul>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>
+<p>Commenting in SQL can be done with any of the following ways:</p>
+<ul>
+<li>Two lines '--'<ul>
+<li>Works in all SQL products except in MS Access</li>
+<li>MySQL requires to use one space after these lines</li>
+</ul>
+</li>
+<li>Slash with start '/*'<ul>
+<li>Very widely used</li>
+<li>Allows the commenting of multiple lines</li>
+<li>Works at least in MySQL, Oracle and SQL server products</li>
+</ul>
+</li>
+<li>Hashtag '#'<ul>
+<li>Used usually in MySQL for commenting one line</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Below is an example where all three commenting methods are shown</p>
+</li>
+</ul>
+<pre><code class="language-sql hljs"><span class="hljs-comment">-- Comment</span>
+
+<span class="hljs-comment">/* First line
+Second line
+Third line */</span>
+
+# <span class="hljs-keyword">Comment</span>
+</code></pre>
+<h2 id="retrieving-information-from-database-select">Retrieving information from database (SELECT)</h2>
+<ul>
+<li>
+<p>SELECT statement can have the following clauses:</p>
+<ul>
+<li>SELECT → which columns will be selected</li>
+<li>FROM → from what table(s) or view will the data be retrieved</li>
+<li>WHERE → which lines will be selected</li>
+<li>GROUP BY → how result set will be grouped</li>
+<li>HAVING → which lines in group by will be shown</li>
+<li>ORDER BY → how result set will be sorted</li>
+</ul>
+</li>
+<li>
+<p><strong>DISTINCT</strong> clause can be used with SELECT to drop all duplicates from result set</p>
+</li>
+<li>Like mentioned below, SELECT and FROM clauses must be included in the statement</li>
+<li>Below are some examples of using SELECT</li>
+</ul>
+<div class="example-block">
+
+<h4>Example 1</h4>
+
+<p class="example-description">Select all data from Employee table.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> Employee;
+</code></pre>
+
+
+</div>
+
+<div class="example-block">
+
+<h4>Example 2</h4>
+
+<p class="example-description">Select only firstname column from Employee table.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname <span class="hljs-keyword">FROM</span> Employee;
+</code></pre>
+
+
+</div>
+
+<div class="example-block">
+
+<h4>Example 3</h4>
+
+<p class="example-description">Select all cities from Employee table (includes duplicates!).</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> city <span class="hljs-keyword">FROM</span> Employee;
+</code></pre>
+
+
+</div>
+
+<div class="example-block">
+
+<h4>Example 4</h4>
+
+<p class="example-description">Select all different cities from Employee table (duplicates will be removed).</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> city <span class="hljs-keyword">FROM</span> Employee;
+</code></pre>
+
+
+</div>
+
+<h2 id="column-alias-as">Column alias (AS)</h2>
+<ul>
+<li>Column names will be shown in the result set as they are in database by default</li>
+<li>This can however be bypassed by giving an optional alias name for the column</li>
+<li>In SQL language, alias is defined by using the <strong>AS</strong> clause</li>
+<li>Actually, <strong>AS</strong> clause is only required in MS Access and can be left out on all other products (Only one space between column name and alias is required)!</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Select all different cities from Employment table and use alias 'Place' for the column.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> city Place <span class="hljs-keyword">FROM</span> Employee;
+</code></pre>
+
+
+</div>
+
+<h2 id="order-the-result-set-order-by">Order the result set (ORDER BY)</h2>
+<ul>
+<li>Results retrieved with SELECT statement can be ordered by giving <strong>ORDER BY</strong> clause at the end of the statement</li>
+<li>Results can be ordered in ascending order by using <strong>ASC</strong> (the default value and is not required) or in descending order using <strong>DESC</strong></li>
+</ul>
+<div class="example-block">
+
+<h4>Example 1</h4>
+
+<p class="example-description">Select firstname, surname and city from Employee table. Order the results by surname in descending order.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, city <span class="hljs-keyword">FROM</span> Employee <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> surname <span class="hljs-keyword">DESC</span>;
+</code></pre>
+
+
+</div>
+
+<ul>
+<li><strong>ORDER BY</strong> can be used for more than one column</li>
+<li>The order for columns goes in the order columns are given</li>
+</ul>
+<div class="example-block">
+
+<h4>Example 2</h4>
+
+<p class="example-description">Select firstname, surname, city and salary from Employee table. Order the results first by city in ascending order and then by salary in descending order.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, city, salary <span class="hljs-keyword">FROM</span> Employee <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> city, salary <span class="hljs-keyword">DESC</span>;
+</code></pre>
+
+
+</div>
+
+<h2 id="limit-the-result-set-limit">Limit the result set (LIMIT)</h2>
+<ul>
+<li>You may choose to only show part of the result set by using <strong>LIMIT</strong> clause at the end of SELECT statement</li>
+<li>Results can also be retrieved from particular rows using <strong>OFFSET</strong> clause with LIMIT</li>
+<li><strong>Important</strong>: Next value from given offset value will be included!</li>
+<li>Below are couple of examples for using LIMIT and OFFSET clauses</li>
+</ul>
+<div class="example-block">
+
+<h4>Example 1</h4>
+
+<p class="example-description">Select firstname, surname, city and salary from Employee table. Show only the first 30 employees in the result set.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, city, salary
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">LIMIT</span> <span class="hljs-number">30</span>;
+</code></pre>
+
+
+</div>
+
+<div class="example-block">
+
+<h4>Example 2</h4>
+
+<p class="example-description">Select firstname, surname, city and salary from Employee table. Only rows 10-15 should be included in result set.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, city, salary
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">LIMIT</span> <span class="hljs-number">5</span> <span class="hljs-keyword">OFFSET</span> <span class="hljs-number">9</span>;
+</code></pre>
+
+
+</div>
+
+<h2 id="row-selection-where">Row selection (WHERE)</h2>
+<ul>
+<li><strong>WHERE</strong> clause allows filtering unwanted rows from the result set</li>
+<li>Logical operators <strong>AND</strong>, <strong>OR</strong> and <strong>NOT</strong> can be used</li>
+<li>In addition, comparison operators defined in ANSI standard can also be used:<ul>
+<li><strong>=</strong> → Equal</li>
+<li><strong>&lt;</strong> → Less than</li>
+<li><strong>&gt;</strong> → Greater than</li>
+<li><strong>&lt;&gt;, !=</strong> → Not equal</li>
+<li><strong>&lt;=</strong> → Less than or equal</li>
+<li><strong>&gt;=</strong> → Greater than or equal</li>
+</ul>
+</li>
+</ul>
+<div class="example-block">
+
+<h4>Example 1</h4>
+
+<p class="example-description">Select salary information from all employees living in Helsinki.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> city, salary
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">WHERE</span> city=<span class="hljs-string">'Helsinki'</span>;
+</code></pre>
+
+
+</div>
+
+<div class="example-block">
+
+<h4>Example 2</h4>
+
+<p class="example-description">Select all employees living in Helsinki with salary less than 3000.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, salary
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">WHERE</span> city=<span class="hljs-string">'Helsinki'</span>
+<span class="hljs-keyword">AND</span> salary &lt; <span class="hljs-number">3000</span>;
+</code></pre>
+
+
+</div>
+
+<ul>
+<li>Usage of brackets is required if there is more than one logical operator included in the statement</li>
+</ul>
+<div class="example-block">
+
+<h4>Example 3</h4>
+
+<p class="example-description">Select all employees living in Helsinki who has either salary equal to 2800 or a secondary degree.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, city, salary
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">WHERE</span> city=<span class="hljs-string">'Helsinki'</span> <span class="hljs-keyword">AND</span> (salary = <span class="hljs-number">2800</span> <span class="hljs-keyword">OR</span> degree=<span class="hljs-string">'secondary degree'</span>);
+</code></pre>
+
+
+</div>
+
+<h2 id="string-patterns-like">String patterns (LIKE)</h2>
+<ul>
+<li><strong>LIKE</strong> clause is used with <strong>WHERE</strong> when a particular string pattern needs to be used as a filter</li>
+<li>The following two wildcards may be used in <strong>LIKE</strong> clause:<ul>
+<li><strong>%</strong> → Zero, one or multiple characters</li>
+<li><strong>_</strong> → Single character</li>
+</ul>
+</li>
+</ul>
+<div class="example-block">
+
+<h4>Example 1</h4>
+
+<p class="example-description">Select employees whose surname starts with letter S. Firstname, surname and city must be included in result set and results should be ordered by surname.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, city
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">WHERE</span> surname <span class="hljs-keyword">LIKE</span> <span class="hljs-string">'S%'</span>
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> surname;
+</code></pre>
+
+
+</div>
+
+<div class="example-block">
+
+<h4>Example 2</h4>
+
+<p class="example-description">Select employees whose surname's second letter is not A. Firstname, surname and city must be included in result set and results should be ordered by surname in descending order.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, city
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">WHERE</span> surname <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">'_A%'</span>
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> surname <span class="hljs-keyword">DESC</span>;
+</code></pre>
+
+
+</div>
+
+<h2 id="between-and-in-operators">BETWEEN and IN operators</h2>
+<ul>
+<li><strong>BETWEEN</strong> operator is used to get values from given range including begin and end values</li>
+<li><strong>IN</strong> operator is used for retrieving exact values. It can include numbers, characters, strings or dates</li>
+</ul>
+<div class="example-block">
+
+<h4>Example 1</h4>
+
+<p class="example-description">Select employees whose age is between 30 and 40. Result set should be ordered by surname.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, age
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">WHERE</span> age <span class="hljs-keyword">BETWEEN</span> <span class="hljs-number">30</span> <span class="hljs-keyword">and</span> <span class="hljs-number">40</span>
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> surname;
+</code></pre>
+
+
+</div>
+
+<div class="example-block">
+
+<h4>Example 2</h4>
+
+<p class="example-description">Select employees whose age is 25, 30 or 35. Result set should be ordered by surname.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, age
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">WHERE</span> age <span class="hljs-keyword">IN</span> (<span class="hljs-number">25</span>, <span class="hljs-number">30</span>, <span class="hljs-number">35</span>)
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> surname;
+</code></pre>
+
+
+</div>
+
+<h2 id="null-value">Null value</h2>
+<ul>
+<li>Null value means missing value</li>
+<li>Null value does not mean<ul>
+<li>space</li>
+<li>zero</li>
+<li>zero length string</li>
+</ul>
+</li>
+<li><strong>Important</strong>: When inserting data to the database and some columns are not defined in query with values, these column values will be Null if NOT NULL restriction is not set for the column</li>
+<li>Null values can be retrieved from database table with <strong>SELECT</strong> statement using <strong>IS</strong> clause like in the example below</li>
+</ul>
+<div class="example-block">
+
+<h4>Example</h4>
+
+<p class="example-description">Select employees who has no degree stored.</p>
+
+
+<pre><code class="language-sql hljs"><span class="hljs-keyword">SELECT</span> firstname, surname, degree
+<span class="hljs-keyword">FROM</span> Employee
+<span class="hljs-keyword">WHERE</span> degree <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span>;
+</code></pre>
+
+
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/" class="btn btn-neutral float-right" title="SQL basics 2">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/" class="btn btn-neutral" title="Database design"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/02_database_design/" style="color: #fcfcfc;">« Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="https://hantt.pages.labranet.jamk.fi/ttc2020-online-material/materials/04_sql_basics_02/" style="color: #fcfcfc">Next »</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="./SQL basics 1 - Databases [TTC2020]_files/theme.js.download" defer=""></script>
+      <script src="./SQL basics 1 - Databases [TTC2020]_files/main.js.download" defer=""></script>
+
+
+
+</body></html>
